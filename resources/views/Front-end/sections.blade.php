@@ -36,14 +36,14 @@
         </div>
     @endif
 
-    @if (session()->has('add_section'))
+    @if (session()->has('success_msg'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('add_section') }}</strong>
+            <strong>{{ session()->get('success_msg') }}</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {{Session::forget('add_section')}}
+        {{Session::forget('success_msg')}}
     @endif
     <div class="row row-sm">
 
@@ -68,7 +68,7 @@
                                 <th class="border-bottom-0">اسم القسم</th>
                                 <th class="border-bottom-0">الوصف</th>
                                 <th class="border-bottom-0">العمليات</th>
-                                <th class="border-bottom-0">العمليات</th>
+                                <th class="border-bottom-0">.</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -77,8 +77,18 @@
                                 <td>{{$section->id}}</td>
                                 <td>{{$section->name}}</td>
                                 <td>{{$section->description}}</td>
-                                <td><a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">تعديل</a></td>
-                                <td><a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">تعديل</a></td>
+                                <td>
+                                        <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
+                                           data-id="{{ $section->id }}" data-section_name="{{ $section->name }}"
+                                           data-description="{{ $section->description }}" data-toggle="modal"
+                                           href="#modaldemo1" title="تعديل"><i class="las la-pen"></i></a>
+
+                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                           data-id="{{ $section->id }}" data-section_name="{{ $section->name }}"
+                                           data-toggle="modal" href="#modaldemo1" title="حذف"><i
+                                                class="las la-trash"></i></a>
+                                    </td>
+                                <td>.</td>
                             </tr>
                             @endforeach
                             </tbody>
@@ -93,15 +103,28 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">Basic Modal</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                    <h6 class="modal-title">تعديل القسم</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <h6>Modal Body</h6>
-                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                    <h6>تعديل القسم</h6>
+                    <form action="sections/update" method="post">
+                        @csrf
+                        {{ method_field('patch') }}
+                        <div class="form-group">
+                            <input type="hidden" name="id" id="id" value="">
+                            <label for="recipient-name" class="col-form-label">اسم القسم:</label>
+                            <input class="form-control" name="name" id="section_name" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">ملاحظات:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn ripple btn-primary" type="button">Save changes</button>
-                    <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
+                    <button type="submit" class="btn btn-primary">تاكيد</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -161,4 +184,17 @@
     <!--Internal  Datatable js -->
     <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
     <script src="{{URL::asset('assets/js/modal.js')}}"></script>
+
+    <script>
+        $('#modaldemo1').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var section_name = button.data('section_name')
+            var description = button.data('description')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #section_name').val(section_name);
+            modal.find('.modal-body #description').val(description);
+        })
+    </script>
 @endsection
