@@ -4,7 +4,7 @@
 Project        :   VALEX - HTML5 Bootstrap Admin Template
 Version        :   V.1
 Create Date    :   09/05/20
-Copyright      :   Spruko Technologies Private Limited 
+Copyright      :   Spruko Technologies Private Limited
 Author         :   SprukoSoft
 Author URL     :   https://themeforest.net/user/sprukosoft
 Support	       :   support@spruko.com
@@ -83,14 +83,13 @@ License        :   Licensed under ThemeForest License
 /* ######## FONT ######## */
 /* ############### FONTS IMPORT ############### */
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900");
-/* ######## BOOTSTRAP ######## */
-/*Color variables*/
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
 /*gray variables*/
 /*white variables*/
 /*black variables*/
 /*shadow variables*/
 html {
-  font-family: sans-serif;
+  font-family: 'Cairo', sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
@@ -102,7 +101,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.5;
   color: #031b4e;
   text-align: right;
@@ -10178,7 +10177,8 @@ a.close.disabled {
 /* ############### PAGE LAYOUT STYLES ############### */
 /* ###### 6.3 Global  ###### */
 body {
-  font-family: "Roboto", sans-serif; }
+    font-family: 'Cairo', sans-serif;
+}
 
 .main-body, .main-dashboard {
   min-height: 100vh;
