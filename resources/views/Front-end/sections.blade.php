@@ -25,6 +25,9 @@
 @section('content')
     @if ($errors->any())
         <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -68,11 +71,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach(\App\Models\Invoice::get() as $invoice)
+                            @foreach(\App\Models\Section::get() as $section)
                             <tr>
-                                <td>test</td>
-                                <td>test</td>
-                                <td>test</td>
+                                <td>{{$section->id}}</td>
+                                <td>{{$section->name}}</td>
+                                <td>{{$section->description}}</td>
                                 <td><a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">تعديل</a></td>
                                 <td><a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">تعديل</a></td>
                             </tr>
@@ -114,12 +117,12 @@
                        @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">اسم القسم</label>
-                            <input type="text" class="form-control" id="section_name" name="section_name">
+                            <input type="text" class="form-control" id="section_name" name="section_name" required>
                         </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">ملاحظات</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                         </div>
 
                         <div class="modal-footer">
