@@ -43,6 +43,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+        {{Session::forget('add_section')}}
     @endif
     <div class="row row-sm">
 
