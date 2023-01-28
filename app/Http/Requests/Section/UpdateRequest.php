@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
         try {
             $section = Section::find($this->id);
             if(!$section)
-                return redirect()->back()->withErrors('msg','هذا القسم غير موجود');
+                return redirect()->back()->withErrors(['failed_msg'=>'هذا القسم غير موجود']);
             if ($this->filled('name'))
                 $section->name = $this->name;
             if ($this->filled('description'))
@@ -32,8 +32,10 @@ class UpdateRequest extends FormRequest
                 Session::put('success_msg','تم اضافة التعديلات على القسم بنجاح');
                 return redirect()->back();
             }
+            else
+                return redirect()->back()->withErrors(['failed_msg'=> 'حدث خطأ ما الرجاء المحاولة مرة اخرى']);
         }catch (Exception $ex){
-            return redirect()->back()->withErrors('failed_msg',$ex->getMessage());
+            return redirect()->back()->withErrors(['failed_msg'=>$ex->getMessage()]);
         }
     }
 

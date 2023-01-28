@@ -27,9 +27,10 @@ class StoreRequest extends FormRequest
                 session()->put('success_msg','تم اضافة القسم بنجاح');
                 return redirect()->back();
             }
-
+            else
+                return redirect()->back()->withErrors(['failed_msg'=>'حدث خطأ ما الرجاء المحاولة مرة اخرى']);
         }catch (Exception $ex){
-            return redirect()->back()->withErrors('failed_msg',$ex->getMessage());
+            return redirect()->back()->withErrors(['failed_msg'=>$ex->getMessage()]);
         }
     }
 
