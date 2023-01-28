@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Section\DestroyRequest;
 use App\Http\Requests\section\IndexRequest;
 use App\Http\Requests\Section\StoreRequest;
 use App\Http\Requests\section\UpdateRequest;
@@ -82,8 +83,8 @@ class SectionController extends Controller
      * @param  \App\Models\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Section $section)
+    public function destroy(DestroyRequest $request)
     {
-        //
+        return $request->run();
     }
 }

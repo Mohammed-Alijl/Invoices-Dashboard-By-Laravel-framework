@@ -85,7 +85,7 @@
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $section->id }}" data-section_name="{{ $section->name }}"
-                                           data-toggle="modal" href="#modaldemo1" title="حذف"><i
+                                           data-toggle="modal" href="#modaldemo5" title="حذف"><i
                                                 class="las la-trash"></i></a>
                                     </td>
                                 <td>.</td>
@@ -158,6 +158,23 @@
             </div>
         </div>
     </div>
+    <div class="modal" id="modaldemo5">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content tx-size-sm">
+                <div class="modal-body tx-center pd-y-20 pd-x-20">
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button> <i class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                    <h4 class="tx-danger mg-b-20">هل انت متأكد من حذف هذا القسم</h4>
+                    <p class="mg-b-20 mg-x-20">في حال حذفك لهذا القسم فبهذا سوف يتم حذف جميع منتجاته</p>
+                    <form action="sections/destroy'" method="post">
+                        @csrf
+                        @method('delete')
+                        <input type="hidden" name="id" id="id" value="">
+                        <button type="submit" class="btn ripple btn-danger pd-x-25">حذف</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     <!-- Container closed -->
     </div>
@@ -195,6 +212,14 @@
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #section_name').val(section_name);
             modal.find('.modal-body #description').val(description);
+        })
+    </script>
+    <script>
+        $('#modaldemo5').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body #id').val(id);
         })
     </script>
 @endsection
