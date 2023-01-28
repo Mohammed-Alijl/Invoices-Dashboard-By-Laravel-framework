@@ -137,7 +137,7 @@
                 </div>
                 <div class="modal-body">
                     <h6>اضافة قسم</h6>
-                    <form action="{{ route('sections.store') }}" method="post">
+                    <form action="{{ route('sections.store') }}" method="post" autocomplete="off">
                        @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">اسم القسم</label>
@@ -165,7 +165,7 @@
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button> <i class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
                     <h4 class="tx-danger mg-b-20">هل انت متأكد من حذف هذا القسم</h4>
                     <p class="mg-b-20 mg-x-20">في حال حذفك لهذا القسم فبهذا سوف يتم حذف جميع منتجاته</p>
-                    <form action="sections/destroy'" method="post">
+                    <form action="sections/destroy'" method="post" autocomplete="off">
                         @csrf
                         @method('delete')
                         <input type="hidden" name="id" id="id" value="">
