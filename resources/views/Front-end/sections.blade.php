@@ -109,19 +109,19 @@
                     <h6>تعديل القسم</h6>
                     <form action="sections/update" method="post">
                         @csrf
-                        {{ method_field('patch') }}
+                        @method('patch')
                         <div class="form-group">
                             <input type="hidden" name="id" id="id" value="">
-                            <label for="recipient-name" class="col-form-label">اسم القسم:</label>
+                            <label for="recipient-name" class="col-form-label">اسم القسم</label>
                             <input class="form-control" name="name" id="section_name" type="text">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">ملاحظات:</label>
+                            <label for="message-text" class="col-form-label">الوصف</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">تاكيد</button>
+                    <button type="submit" class="btn btn-primary">تعديل</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
                 </div>
                     </form>
@@ -145,12 +145,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">ملاحظات</label>
+                            <label for="exampleFormControlTextarea1">الوصف</label>
                             <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">تاكيد</button>
+                            <button type="submit" class="btn btn-success">اضافة</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
                         </div>
                     </form>
