@@ -30,10 +30,12 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">جدول الفواتير</h4>
+                        <h4 class="card-title mg-b-0">قائمة الأقسام</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
-                    <p class="tx-12 tx-gray-500 mb-2">جميع معلومات الفواتير في هذا الجدول</p>
+                    <p class="tx-12 tx-gray-500 mb-2"><div class="col-sm-6 col-md-4 col-xl-3 mg-t-20 mg-sm-t-0">
+                        <a class="modal-effect btn btn-outline-primary btn-block" href="invoices/create">اضافة فاتورة</a>
+                    </div></p>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

@@ -9,6 +9,7 @@ use App\Http\Requests\section\UpdateRequest;
 use App\Models\Section;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class SectionController extends Controller
@@ -86,5 +87,10 @@ class SectionController extends Controller
     public function destroy(DestroyRequest $request)
     {
         return $request->run();
+    }
+
+    public function products($id){
+        $products = DB::table('products')->where('section_id',$id)->pluck('name','id');
+        return json_encode($products);
     }
 }

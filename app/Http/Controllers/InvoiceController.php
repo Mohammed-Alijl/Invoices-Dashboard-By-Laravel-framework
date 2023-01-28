@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Inovices\CreateRequest;
+use App\Http\Requests\Inovices\IndexRequest;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,9 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(IndexRequest $request)
     {
-        return view('Front-end.invoices');
+        return $request->run();
     }
 
     /**
@@ -22,9 +24,9 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CreateRequest $request)
     {
-        //
+        return $request->run();
     }
 
     /**
