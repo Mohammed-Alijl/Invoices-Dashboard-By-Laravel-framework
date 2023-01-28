@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Section;
 
+use App\Models\Section;
+use Exception;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
@@ -14,6 +16,21 @@ class StoreRequest extends FormRequest
     public function authorize()
     {
         return true;
+    }
+
+    public function run(){
+        try {
+            $section = new Section();
+            $section->name = $this->section_name;
+            $section->description = $this->description;
+            if ($section->save()){
+                session()->put('success_msg','تم اضافة القسم بنجاح');
+                return redirect()->back();
+            }
+
+        }catch (Exception $ex){
+            return redirect()->back()->withErrors('failed_msg',$ex->getMessage());
+        }
     }
 
     /**

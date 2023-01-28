@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\section\IndexRequest;
 use App\Http\Requests\Section\StoreRequest;
 use App\Http\Requests\section\UpdateRequest;
 use App\Models\Section;
@@ -16,9 +17,9 @@ class SectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(IndexRequest $request)
     {
-        return view('Front-end.sections');
+        return $request->run();
     }
 
     /**
@@ -39,18 +40,7 @@ class SectionController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        try {
-            $section = new Section();
-            $section->name = $request->section_name;
-            $section->description = $request->description;
-            if ($section->save()){
-                session()->put('success_msg','تم اضافة القسم بنجاح');
-                return redirect()->back();
-            }
-
-        }catch (Exception $ex){
-            return redirect()->back()->withErrors('failed_msg',$ex->getMessage());
-        }
+        return $request->run();
     }
 
     /**
@@ -83,21 +73,7 @@ class SectionController extends Controller
      */
     public function update(UpdateRequest $request)
     {
-        try {
-            $section = Section::find($request->id);
-            if(!$section)
-                return redirect()->back()->withErrors('msg','هذا القسم غير موجود');
-            if ($request->filled('name'))
-                $section->name = $request->name;
-            if ($request->filled('description'))
-                $section->description = $request->description;
-            if($section->save()){
-                Session::put('success_msg','تم اضافة التعديلات على القسم بنجاح');
-                return redirect()->back();
-            }
-        }catch (Exception $ex){
-            return redirect()->back()->withErrors('failed_msg',$ex->getMessage());
-        }
+        return $request->run();
     }
 
     /**
