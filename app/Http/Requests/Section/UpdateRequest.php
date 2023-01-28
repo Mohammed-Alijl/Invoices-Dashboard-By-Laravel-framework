@@ -47,7 +47,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'unique:sections,name|min:3|max:30',
+            'name'=>'min:3|max:30|unique:sections,name,' . $this->id,
             'description'=>'max:255'
         ];
     }
