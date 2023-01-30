@@ -16,10 +16,12 @@ class Product extends Model
 
 
     //==========================================================
-    //===================RELATIONSHIPS==========================
+    // RELATIONSHIPS============================================
     //==========================================================
     public function section(){
         return $this->belongsTo(Section::class,'section_id');
     }
-
+    public function invoices(){
+        return $this->hasMany(Invoice::class,'product_id');
+    }
 }

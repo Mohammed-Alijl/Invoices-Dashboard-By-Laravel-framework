@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Inovices\CreateRequest;
 use App\Http\Requests\Inovices\IndexRequest;
+use App\Http\Requests\Inovices\StoreRequest;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 
@@ -35,9 +36,9 @@ class InvoiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        return $request->run();
     }
 
     /**

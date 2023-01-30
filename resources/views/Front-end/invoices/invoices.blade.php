@@ -23,6 +23,28 @@
     <!-- breadcrumb -->
 @endsection
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if (session()->has('invoices_success_msg'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session()->get('invoices_success_msg') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {{Session::forget('invoices_success_msg')}}
+    @endif
     <div class="row row-sm">
 
         <!--div-->
@@ -33,9 +55,12 @@
                         <h4 class="card-title mg-b-0">قائمة الأقسام</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
-                    <p class="tx-12 tx-gray-500 mb-2"><div class="col-sm-6 col-md-4 col-xl-3 mg-t-20 mg-sm-t-0">
-                        <a class="modal-effect btn btn-outline-primary btn-block" href="invoices/create">اضافة فاتورة</a>
-                    </div></p>
+                    <p class="tx-12 tx-gray-500 mb-2">
+                    <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20 mg-sm-t-0">
+                        <a class="modal-effect btn btn-outline-primary btn-block" href="invoices/create">اضافة
+                            فاتورة</a>
+                    </div>
+                    </p>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -58,20 +83,21 @@
                             </thead>
                             <tbody>
                             @foreach(\App\Models\Invoice::get() as $invoice)
-                            <tr>
-                                <td>{{$invoice->id}}</td>
-                                <td>{{$invoice->invoice_number}}</td>
-                                <td>{{$invoice->invoice_Date}}</td>
-                                <td>{{$invoice->due_date}}</td>
-                                <td>{{$invoice->product}}</td>
-                                <td>{{$invoice->section}}</td>
-                                <td>{{$invoice->discount}}</td>
-                                <td>{{$invoice->rate_vat}}</td>
-                                <td>{{$invoice->value_vat}}</td>
-                                <td>{{$invoice->Total}}</td>
-                                <td>{{$invoice->Status}}</td>
-                                <td>{{$invoice->note}}</td>
-                            </tr>
+                                <tr>
+                                    <td>{{$invoice->id}}</td>
+                                    <td>{{$invoice->invoice_number}}</td>
+                                    <td>{{$invoice->invoice_Date}}</td>
+                                    <td>{{$invoice->due_date}}</td>
+                                    <td>{{\App\Models\Product::find($invoice->product_id)->name}}</td>
+                                    <td>{{\App\Models\Section::find($invoice->section_id)->name}}</td>
+                                    <td>{{$invoice->discount}}</td>
+                                    <td>{{$invoice->rate_vat}}</td>
+                                    <td>{{$invoice->value_vat}}</td>
+                                    <td>{{$invoice->total}}</td>
+                                    <td>{{match ($invoice->value_status) {3 => 'مدفوعة',2 => 'مدفوعة جزئيا',default => 'غير مدفوعة',}
+                                }}</td>
+                                    <td>{{$invoice->note}}</td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

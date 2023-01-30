@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class Attachment extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','description'];
+    protected $fillable = [
+        'invoice_id',
+        'file_name'
+    ];
 
     //==========================================================
     // RELATIONSHIPS============================================
     //==========================================================
-    public function products(){
-        return $this->hasMany(Product::class,'section_id');
-    }
-    public function invoices(){
-        return $this->hasMany(Invoice::class,'section_id');
+    public function invoice(){
+        return $this->belongsTo(Invoice::class,'invoice_id');
     }
 }

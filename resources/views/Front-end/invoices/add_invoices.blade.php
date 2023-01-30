@@ -97,13 +97,13 @@
 
                             <div class="col">
                                 <label for="inputName" class="control-label">المنتج</label>
-                                <select id="product" name="product" class="form-control">
+                                <select id="product" name="product_id" class="form-control">
                                 </select>
                             </div>
 
                             <div class="col">
                                 <label for="inputName" class="control-label">مبلغ التحصيل</label>
-                                <input type="text" class="form-control" id="inputName" name="Amount_collection"
+                                <input type="text" class="form-control" id="inputName" name="amount_collection"
                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
                         </div>
@@ -151,7 +151,7 @@
 
                             <div class="col">
                                 <label for="inputName" class="control-label">الاجمالي شامل الضريبة</label>
-                                <input type="text" class="form-control" id="Total" name="Total" readonly>
+                                <input type="text" class="form-control" id="Total" name="total" readonly>
                             </div>
                         </div>
 
@@ -233,10 +233,10 @@
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
-                            $('select[name="product"]').empty();
+                            $('select[name="product_id"]').empty();
                             $.each(data, function(key, value) {
-                                $('select[name="product"]').append('<option value="' +
-                                    value + '">' + value + '</option>');
+                                $('select[name="product_id"]').append('<option value="' +
+                                    key + '">' + value + '</option>');
                             });
                         },
                     });

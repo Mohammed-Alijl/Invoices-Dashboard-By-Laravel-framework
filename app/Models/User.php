@@ -43,4 +43,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    //==========================================================
+    // RELATIONSHIPS============================================
+    //==========================================================
+    public function invoices(){
+        return $this->hasMany(Invoice::class,'user_id');
+    }
 }
