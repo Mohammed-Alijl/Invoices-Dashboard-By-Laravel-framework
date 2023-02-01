@@ -123,6 +123,26 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tab5">
+                                    <div class="card-body">
+                                        <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
+                                        <h5 class="card-title">اضافة مرفقات</h5>
+                                        <form method="post" action="{{ route('attachments.store') }}"
+                                              enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile"
+                                                       name="file_name" required>
+                                                <input type="hidden" id="customFile" name="invoice_number"
+                                                       value="{{ $invoice->invoice_number }}">
+                                                <input type="hidden" id="invoice_id" name="invoice_id"
+                                                       value="{{ $invoice->id }}">
+                                                <label class="custom-file-label" for="customFile">حدد
+                                                    المرفق</label>
+                                            </div><br><br>
+                                            <button type="submit" class="btn btn-primary btn-sm "
+                                                    name="uploadedFile">تاكيد</button>
+                                        </form>
+                                    </div>
                                     <div class="col-xl-12">
                                         <div class="card mg-b-20">
                                             <div class="card-header pb-0">
@@ -147,29 +167,29 @@
                                                         </thead>
                                                         <tbody>
                                                         @foreach($attachments as $attachment)
-                                                        <tr>
-                                                            <td>{{$attachment->id}}</td>
-                                                            <td>{{$attachment->file_name}}</td>
-                                                            <td>{{$invoice->user->name}}</td>
-                                                            <td>{{$attachment->created_at}}</td>
-                                                            <td colspan="2">
+                                                            <tr>
+                                                                <td>{{$attachment->id}}</td>
+                                                                <td>{{$attachment->file_name}}</td>
+                                                                <td>{{$invoice->user->name}}</td>
+                                                                <td>{{$attachment->created_at}}</td>
+                                                                <td colspan="2">
 
-                                                                <a class="btn btn-outline-success btn-sm"
-                                                                   href="{{route('attachments.show',$attachment->id) }}"
-                                                                   role="button"><i class="fas fa-eye"></i>&nbsp;
-                                                                    عرض</a>
+                                                                    <a class="btn btn-outline-success btn-sm"
+                                                                       href="{{route('attachments.show',$attachment->id) }}"
+                                                                       role="button"><i class="fas fa-eye"></i>&nbsp;
+                                                                        عرض</a>
 
-                                                                <a class="btn btn-outline-info btn-sm"
-                                                                   href="{{route('attachments.edit',$attachment->id)  }}"
-                                                                   role="button"><i
-                                                                        class="fas fa-download"></i>&nbsp;
-                                                                    تحميل</a>
+                                                                    <a class="btn btn-outline-info btn-sm"
+                                                                       href="{{route('attachments.edit',$attachment->id)  }}"
+                                                                       role="button"><i
+                                                                            class="fas fa-download"></i>&nbsp;
+                                                                        تحميل</a>
                                                                     <button class="btn btn-outline-danger btn-sm"
                                                                             data-toggle="modal"
                                                                             data-id="{{ $attachment->id }}"
                                                                             data-target="#modaldemo5">حذف</button>
-                                                            </td>
-                                                        </tr>
+                                                                </td>
+                                                            </tr>
                                                         @endforeach
                                                         </tbody>
                                                     </table>
@@ -177,7 +197,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                  </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -205,6 +226,42 @@
 		<!-- main-content closed -->
 @endsection
 @section('js')
+    <!-- Internal Data tables -->
+    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/pdfmake.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/vfs_fonts.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
+    <!--Internal  Datatable js -->
+    <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
+    <script src="{{URL::asset('assets/js/modal.js')}}"></script>
+    <!--Internal  Datepicker js -->
+    <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+    <!-- Internal Select2 js-->
+    <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+    <!-- Internal Jquery.mCustomScrollbar js-->
+    <script src="{{ URL::asset('assets/plugins/custom-scroll/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <!-- Internal Input tags js-->
+    <script src="{{ URL::asset('assets/plugins/inputtags/inputtags.js') }}"></script>
+    <!--- Tabs JS-->
+    <script src="{{ URL::asset('assets/plugins/tabs/jquery.multipurpose_tabcontent.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/tabs.js') }}"></script>
+    <!--Internal  Clipboard js-->
+    <script src="{{ URL::asset('assets/plugins/clipboard/clipboard.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/clipboard/clipboard.js') }}"></script>
+    <!-- Internal Prism js-->
+    <script src="{{ URL::asset('assets/plugins/prism/prism.js') }}"></script>
     <script>
         $('#modaldemo5').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
@@ -214,5 +271,12 @@
             modal.find('.modal-body #id').val(id);
         })
     </script>
+    </script>
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
     </script>
 @endsection

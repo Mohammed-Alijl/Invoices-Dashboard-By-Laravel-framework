@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Attachment\DestroyRequest;
 use App\Http\Requests\Attachment\EditRequest;
 use App\Http\Requests\Attachment\ShowRequest;
+use App\Http\Requests\Attachment\StoreRequest;
 use Illuminate\Http\Request;
 
 class AttachmentController extends Controller
@@ -35,9 +36,9 @@ class AttachmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        return $request->run();
     }
 
     /**
