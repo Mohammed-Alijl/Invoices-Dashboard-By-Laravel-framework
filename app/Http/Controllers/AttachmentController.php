@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Invoices\CreateRequest;
-use App\Http\Requests\Invoices\IndexRequest;
-use App\Http\Requests\Invoices\ShowRequest;
-use App\Http\Requests\Invoices\StoreRequest;
-use App\Models\Invoice;
+use App\Http\Requests\Attachment\DestroyRequest;
+use App\Http\Requests\Attachment\EditRequest;
+use App\Http\Requests\Attachment\ShowRequest;
 use Illuminate\Http\Request;
 
-class InvoiceController extends Controller
+class AttachmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(IndexRequest $request)
+    public function index()
     {
-        return $request->run();
+        //
     }
 
     /**
@@ -26,9 +24,9 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CreateRequest $request)
+    public function create()
     {
-        return $request->run();
+        //
     }
 
     /**
@@ -37,17 +35,18 @@ class InvoiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store(Request $request)
     {
-        return $request->run();
+        //
     }
 
     /**
      * Display the specified resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ShowRequest $request,$id)
+    public function show(ShowRequest $request, $id)
     {
         return $request->run($id);
     }
@@ -55,22 +54,22 @@ class InvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Invoice  $invoices
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Invoice $invoices)
+    public function edit(EditRequest $request, $id)
     {
-        //
+        return $request->run($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoice  $invoices
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invoice $invoices)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,11 +77,10 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Invoice  $invoices
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Invoice $invoices)
+    public function destroy(DestroyRequest $request, $id)
     {
-        //
+        return $request->run($id);
     }
 }

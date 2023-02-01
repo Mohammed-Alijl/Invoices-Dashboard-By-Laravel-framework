@@ -85,7 +85,7 @@
                             @foreach(\App\Models\Invoice::get() as $invoice)
                                 <tr>
                                     <td>{{$invoice->id}}</td>
-                                    <td>{{$invoice->invoice_number}}</td>
+                                    <td><a href="{{route('invoices.show',$invoice->id)}}">{{$invoice->invoice_number}}</a></td>
                                     <td>{{$invoice->invoice_Date}}</td>
                                     <td>{{$invoice->due_date}}</td>
                                     <td>{{\App\Models\Product::find($invoice->product_id)->name}}</td>

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Inovices;
+namespace App\Http\Requests\Invoices;
 
 use App\Models\Section;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRequest extends FormRequest
+class IndexRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,8 +18,7 @@ class CreateRequest extends FormRequest
     }
 
     public function run(){
-        $sections = Section::all();
-        return view('Front-end.invoices.add_invoices',compact('sections'));
+        return view('Front-end.invoices.invoices');
     }
 
     /**

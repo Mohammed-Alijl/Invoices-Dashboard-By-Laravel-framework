@@ -35,6 +35,12 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
+        'attachment' => [
+            'driver' => 'local',
+            'root' => public_path() . 'assets/img/invoices',
+            'throw' => false,
+        ],
+
 
         'public' => [
             'driver' => 'local',

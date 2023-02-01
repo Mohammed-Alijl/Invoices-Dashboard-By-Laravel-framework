@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Inovices;
+namespace App\Http\Requests\Invoices;
 
 use App\Models\Attachment;
 use App\Models\Invoice;

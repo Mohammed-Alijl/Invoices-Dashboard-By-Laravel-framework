@@ -9,9 +9,9 @@ trait AttachmentTrait
         $image_request->move($path,$name);
         return $name;
     }
-    public function delete_image($imageName){
-        if(file_exists($imageName))
-            unlink($imageName);
+    public function delete_attachment($attachmentName){
+        if(file_exists($attachmentName))
+            unlink($attachmentName);
     }
     public function is_attachment($image_request){
         $extension = $image_request->getClientOriginalExtension();
