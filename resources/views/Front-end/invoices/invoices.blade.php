@@ -94,8 +94,19 @@
                                     <td>{{$invoice->rate_vat}}</td>
                                     <td>{{$invoice->value_vat}}</td>
                                     <td>{{$invoice->total}}</td>
-                                    <td>{{match ($invoice->value_status) {3 => 'مدفوعة',2 => 'مدفوعة جزئيا',default => 'غير مدفوعة',}
-                                }}</td>
+                                    <td>
+                                            @switch($invoice->value_status)
+                                                @case(3)
+                                                    <span class="text-success">مدفوعة</span>
+                                                        @break
+                                                @case(2)
+                                                    <span class="text-warning">مدفوعة جزئيا</span>
+                                                        @break
+                                                @default
+                                                    <span class="text-danger">غير مدفوعة</span>
+                                                        @break
+                                        @endswitch
+                                </td>
                                     <td>{{$invoice->note}}</td>
                                 </tr>
                             @endforeach
