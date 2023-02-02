@@ -78,8 +78,8 @@
                                 <th class="border-bottom-0">قيمة الضريبة</th>
                                 <th class="border-bottom-0">الاجمالي</th>
                                 <th class="border-bottom-0">الحالات</th>
-                                <th class="border-bottom-0">الملاحظات</th>
                                 <th class="border-bottom-0">العمليات</th>
+                                <th class="border-bottom-0">الملاحظات</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -108,7 +108,7 @@
                                                         @break
                                         @endswitch
                                 </td>
-                                    <td>
+
                                     <td>
                                         <div class="dropdown">
                                             <button aria-expanded="false" aria-haspopup="true"
@@ -116,7 +116,7 @@
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                             <div class="dropdown-menu tx-13">
                                                     <a class="dropdown-item"
-                                                       href=" {{route('invoices.update',$invoice->id) }}">تعديل الفاتورة</a>
+                                                       href=" {{route('invoices.edit',$invoice->id) }}">تعديل الفاتورة</a>
                                                     <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"
                                                        data-toggle="modal" data-target="#delete_invoice"><i
                                                             class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة</a>

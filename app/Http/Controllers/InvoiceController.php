@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Invoices\CreateRequest;
 use App\Http\Requests\Invoices\IndexRequest;
 use App\Http\Requests\Invoices\ShowRequest;
-use App\Http\Requests\Invoices\StoreRequest;
+use App\Http\Requests\Invoices\EditRequest;
+use App\Http\Requests\Invoices\UpdateRequest;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class InvoiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store(EditRequest $request)
     {
         return $request->run();
     }
@@ -52,27 +53,14 @@ class InvoiceController extends Controller
         return $request->run($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Invoice  $invoices
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Invoice $invoices)
+    public function edit(EditRequest $request, $id)
     {
-        //
+        return $request->run($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Invoice  $invoices
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Invoice $invoices)
+    public function update(UpdateRequest $request, $id)
     {
-        //
+        return $request->run($id);
     }
 
     /**
