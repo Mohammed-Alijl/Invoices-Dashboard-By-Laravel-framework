@@ -57,7 +57,7 @@ class UpdateRequest extends FormRequest
             if(!$invoice->save())
                 return redirect()->back()->withErrors('invoices_failed_msg','حدث خطا ما اثناء اضاقة التعديلات الرجاء المحاولة مرة اخرى');
             else
-                Session::put('invoices_success_msg','تم اضافة الفاتورة بنجاح');
+                Session::put('invoices_success_msg','تم تعديل الفاتورة بنجاح');
             if ($files = $this->file('pic')) {
                     $attachmentName = $this->save_attachment($files, "assets/img/invoices/$invoice->invoice_number");
                     $attachment = new Attachment();
