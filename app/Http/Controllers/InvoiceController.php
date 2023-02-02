@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Invoices\CreateRequest;
+use App\Http\Requests\Invoices\DestroyRequest;
 use App\Http\Requests\Invoices\IndexRequest;
 use App\Http\Requests\Invoices\ShowRequest;
 use App\Http\Requests\Invoices\EditRequest;
@@ -63,14 +64,8 @@ class InvoiceController extends Controller
         return $request->run($id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Invoice  $invoices
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Invoice $invoices)
+    public function destroy(DestroyRequest $request)
     {
-        //
+        return $request->run();
     }
 }
