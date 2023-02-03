@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('sections',\App\Http\Controllers\SectionController::class);
     Route::resource('products',\App\Http\Controllers\ProductController::class);
     Route::resource('attachments',\App\Http\Controllers\AttachmentController::class);
+    Route::resource('payments',\App\Http\Controllers\PaymentController::class);
     Route::get('/{page}', [\App\Http\Controllers\AdminController::class,'index']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -46,7 +46,8 @@
                                 <!-- Tabs -->
                                 <ul class="nav panel-tabs main-nav-line">
                                     <li><a href="#tab4" class="nav-link active" data-toggle="tab">تفاصيل الفاتورة</a></li>
-                                    <li><a href="#tab5" class="nav-link" data-toggle="tab">المرفقات</a></li>
+                                    <li><a href="#tab5" class="nav-link" data-toggle="tab">حالات الدفع</a></li>
+                                    <li><a href="#tab6" class="nav-link" data-toggle="tab">المرفقات</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -122,7 +123,69 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="tab5">
+                                <div class="tab-pane active" id="tab5">
+                                    <div class="col-xl-12">
+                                        <div class="card mg-b-20">
+                                            <div class="card-header pb-0">
+                                                <div class="d-flex justify-content-between">
+                                                    <h4 class="card-title mg-b-0">حالات دفع الفاتورة</h4>
+                                                    <i class="mdi mdi-dots-horizontal text-gray"></i>
+                                                </div>
+                                                <p class="tx-12 tx-gray-500 mb-2">
+                                                </p>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table id="example" class="table key-buttons text-md-nowrap">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="border-bottom-0">#</th>
+                                                            <th class="border-bottom-0">رقم الفاتورة</th>
+                                                            <th class="border-bottom-0">تاريخ استحقاق الفاتورة</th>
+                                                            <th class="border-bottom-0">اجمالي المبلغ المطلوب</th>
+                                                            <th class="border-bottom-0">المبلغ المدفوع</th>
+                                                            <th class="border-bottom-0">المبلغ المتبقي</th>
+                                                            <th class="border-bottom-0">تاريخ الدفع</th>
+                                                            <th class="border-bottom-0">حالة الدفع</th>
+                                                            <th class="border-bottom-0">الموظف المستلم</th>
+                                                            <th class="border-bottom-0">الملاحظات</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @foreach($payments as $payment)
+                                                            <tr>
+                                                                <td>{{$invoice->id}}</td>
+                                                                <td>{{$invoice->invoice_number}}</td>
+                                                                <td>{{$invoice->due_date}}</td>
+                                                                <td>{{$invoice->total}}</td>
+                                                                <td>{{$payment->collection_amount}}</td>
+                                                                <td>{{$invoice->total - $payment->collection_amount}}</td>
+                                                                <td>{{$payment->created_at}}</td>
+                                                                <td>
+                                                                    @switch($payment->payment_status)
+                                                                        @case(3)
+                                                                            <span class="badge badge-pill badge-success">مدفوعة</span>
+                                                                            @break
+                                                                        @case(2)
+                                                                            <span class="badge badge-pill badge-warning">مدفوعة جزئيا</span>
+                                                                            @break
+                                                                        @default
+                                                                            <span class="badge badge-pill badge-danger">غير مدفوعة</span>
+                                                                            @break
+                                                                    @endswitch
+                                                                </td>
+                                                                <td>{{$payment->user->name}}</td>
+                                                                <td>{{$payment->note}}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab6">
                                     <div class="card-body">
                                         <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                                         <h5 class="card-title">اضافة مرفقات</h5>
@@ -198,6 +261,7 @@
                                         </div>
                                     </div>
                                 </div>
+
 
                             </div>
                         </div>

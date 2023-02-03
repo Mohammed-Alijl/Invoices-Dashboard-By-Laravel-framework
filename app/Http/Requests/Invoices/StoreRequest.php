@@ -4,6 +4,7 @@ namespace App\Http\Requests\Invoices;
 
 use App\Models\Attachment;
 use App\Models\Invoice;
+use App\Models\Invoice_payment;
 use App\Traits\AttachmentTrait;
 use Exception;
 use Illuminate\Foundation\Http\FormRequest;
@@ -57,6 +58,11 @@ class StoreRequest extends FormRequest
                     $attachment->file_name = $attachmentName;
                     $attachment->save();
             }
+            $payment = new Invoice_payment();
+            $payment->invoice_id = $invoice->id;
+            $payment->user_id = Auth::id();
+            $payment->collection_amount = 0;
+            $payment->save();
                 return redirect()->route('invoices.index');
         }catch (Exception $ex){
             return redirect()->route('invoices.index')->withErrors('invoices_failed_msg',$ex->getMessage());

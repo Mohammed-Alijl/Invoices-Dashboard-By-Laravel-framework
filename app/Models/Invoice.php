@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Invoice extends Model
 {
     use HasFactory,  SoftDeletes;
-    protected $fillable = ['invoice_number','invoice_date','due_date','product','section','discount','rate_vat','value_vat',
-        'amount_collection','amount_commission','total','status','value_status','note','user'];
+    protected $fillable = ['invoice_number','invoice_date','due_date','product_id','section_id','discount','rate_vat','value_vat',
+        'amount_collection','amount_commission','total','value_status','note','user_id'];
 
 
     //==========================================================
@@ -27,6 +27,9 @@ class Invoice extends Model
     }
     public function attachments(){
         return $this->hasMany(Attachment::class,'invoice_id');
+    }
+    public function invoice_payments(){
+        return $this->hasMany(Invoice_payment::class,'invoice_id');
     }
 
 

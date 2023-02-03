@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Invoices;
+namespace App\Http\Requests\Payment;
 
 use App\Models\Invoice;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShowRequest extends FormRequest
+class EditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,12 +18,8 @@ class ShowRequest extends FormRequest
     }
 
     public function run($id){
-        $invoice = Invoice::find($id);
-        if(!$invoice)
-            abort(404);
-        $attachments = $invoice->attachments;
-        $payments = $invoice->invoice_payments;
-        return view('Front-end.invoices.invoices_details',compact('invoice','attachments','payments'));
+        $invoice= Invoice::find($id);
+        return view('Front-end.invoices.edit_payments_invoice',compact('invoice'));
     }
 
     /**

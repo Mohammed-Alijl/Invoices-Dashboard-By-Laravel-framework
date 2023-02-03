@@ -125,6 +125,10 @@
                                                    data-target="#modaldemo5"><i
                                                         class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                                     الفاتورة</a>
+                                                <a class="dropdown-item" href="{{route('payments.edit',$invoice->id)}}">
+                                                    <i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp; تغير
+                                                    حالة الدفع
+                                                </a>
                                             </div>
                                         </div>
 

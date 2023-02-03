@@ -7,6 +7,7 @@ use App\Http\Requests\Invoices\DestroyRequest;
 use App\Http\Requests\Invoices\IndexRequest;
 use App\Http\Requests\Invoices\ShowRequest;
 use App\Http\Requests\Invoices\EditRequest;
+use App\Http\Requests\Invoices\StoreRequest;
 use App\Http\Requests\Invoices\UpdateRequest;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class InvoiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EditRequest $request)
+    public function store(StoreRequest $request)
     {
         return $request->run();
     }
