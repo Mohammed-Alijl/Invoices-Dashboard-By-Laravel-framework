@@ -131,6 +131,10 @@
                                                     حالة الدفع
                                                 </a>
                                                 @endif
+                                                <a class="dropdown-item" href="{{route('invoices.print',$invoice->id)}}"><i
+                                                        class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                                    الفاتورة
+                                                </a>
                                             </div>
                                         </div>
 

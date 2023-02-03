@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('deleted/invoices',[\App\Http\Controllers\InvoiceController::class,'deletedInvoices'])->name('invoices.deleted');
     Route::get('recovery/invoices/{id}',[\App\Http\Controllers\InvoiceController::class,'recovery'])->name('invoices.recovery');
     Route::delete('archive/invoices',[\App\Http\Controllers\InvoiceController::class,'archive'])->name('invoices.archive');
+    Route::get('print/invoices/{id}',[\App\Http\Controllers\InvoiceController::class,'print'])->name('invoices.print');
 });
 
 

@@ -121,6 +121,10 @@
                                                    data-target="#modaldemo5"><i
                                                         class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                                     الفاتورة</a>
+                                                <a class="dropdown-item" href="{{route('invoices.print',$invoice->id)}}"><i
+                                                        class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
+                                                    الفاتورة
+                                                </a>
                                             </div>
                                         </div>
 

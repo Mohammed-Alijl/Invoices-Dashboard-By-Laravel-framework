@@ -11,6 +11,7 @@ use App\Http\Requests\Invoices\DeletedInvoicesRequest;
 use App\Http\Requests\Invoices\InvoicesPaidRequest;
 use App\Http\Requests\Invoices\InvoicesPartialPaidRequest;
 use App\Http\Requests\Invoices\EditRequest;
+use App\Http\Requests\Invoices\PrintRequest;
 use App\Http\Requests\Invoices\RecoveryRequest;
 use App\Http\Requests\Invoices\ShowRequest;
 use App\Http\Requests\Invoices\StoreRequest;
@@ -100,6 +101,11 @@ class InvoiceController extends Controller
     }
 
     public function recovery(RecoveryRequest $request, $id)
+    {
+        return $request->run($id);
+    }
+
+    public function print(PrintRequest $request,$id)
     {
         return $request->run($id);
     }
