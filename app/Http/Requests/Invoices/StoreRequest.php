@@ -29,9 +29,7 @@ class StoreRequest extends FormRequest
             //this code to calculate the value of total & value_vat variables because of security reasons
             $Amount_Commission2 = $this->amount_commission - $this->discount;
             $value_vat = $Amount_Commission2 * floatval($this->rate_vat) / 100;
-            $total = number_format(floatval($value_vat + $Amount_Commission2),2);
-
-
+            $total = number_format(floatval($value_vat + $Amount_Commission2),2,'.','');
             $invoice = new Invoice();
             $invoice->invoice_number = intval($this->invoice_number) ;
             $invoice->invoice_date = $this->invoice_date;
@@ -47,6 +45,7 @@ class StoreRequest extends FormRequest
             $invoice->value_status = 1;
             $invoice->note = $this->note;
             $invoice->user_id = Auth::id();
+            $invoice->remaining_amount = intval($total);
             if(!$invoice->save())
                 return redirect()->route('invoices.index')->withErrors('invoices_failed_msg','حدث خطا ما اثناء الاضافة الرجاء المحاولة مرة اخرى');
             else
@@ -62,6 +61,8 @@ class StoreRequest extends FormRequest
             $payment->invoice_id = $invoice->id;
             $payment->user_id = Auth::id();
             $payment->collection_amount = 0;
+            $payment->total = intval($total);
+            $payment->remaining_amount = intval($total);
             $payment->save();
                 return redirect()->route('invoices.index');
         }catch (Exception $ex){
@@ -77,14 +78,14 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'invoice_number'=>'required|unique:invoices,invoice_number|min:1|max:99999999|numeric',
+            'invoice_number'=>'required|unique:invoices,invoice_number|min:1|max:999999|numeric',
             'invoice_date'=>'required|date|date_format:Y-m-d',
             'due_date'=>'required|date|date_format:Y-m-d|after_or_equal:invoice_date',
             'section_id'=>'required|exists:sections,id|numeric|min:1',
             'product_id'=>'required|exists:products,id|numeric|min:1',
             'discount' => 'required|numeric|lte:amount_commission|min:0',
             'amount_commission' => 'required|numeric|lte:amount_collection|min:1',
-            'amount_collection'=>'required|numeric|max:99999999|min:1',
+            'amount_collection'=>'required|numeric|max:999999|min:1',
             'note' => 'nullable|string|max:255',
             'rate_vat'=>'required|in:5%,10%',
             'pic'=>'mimes:pdf,jpeg,jpg,png|max:5000'

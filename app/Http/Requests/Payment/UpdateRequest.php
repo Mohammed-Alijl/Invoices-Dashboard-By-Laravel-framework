@@ -25,15 +25,17 @@ class UpdateRequest extends FormRequest
             $invoice = Invoice::find($id);
             if(!$invoice)
                 return redirect()->back()->withErrors('invoices_failed_msg','الفاتورة المراد تعديل حالة الدفع لها غير موجودة');
-            if($invoice->total < $this->collection_amount)
+            if($invoice->remaining_amount < $this->collection_amount)
                 return redirect()->back()->withErrors('invoices_failed_msg','لا يجب ان يكون المبلغ المدفوع أكبر من المبلغ المستحق');
-            $invoice->total = $invoice->total - $this->collection_amount;
+            $remaining_amount = $invoice->remaining_amount - $this->collection_amount;
             $payment = new Invoice_payment();
             $payment->invoice_id = $id;
             $payment->user_id = Auth::id();
             $payment->collection_amount = $this->collection_amount;
             $payment->note = $this->note;
-            if($invoice->total > $this->collection_amount){
+            $payment->total = $invoice->remaining_amount;
+            $payment->remaining_amount = $remaining_amount;
+            if($remaining_amount > 0){
                 $payment->payment_status = 2;
                 $invoice->value_status = 2;
             }
@@ -41,8 +43,9 @@ class UpdateRequest extends FormRequest
                 $payment->payment_status = 3;
                 $invoice->value_status = 3;
             }
-            $invoice->save();
             $payment->save();
+            $invoice->remaining_amount = $remaining_amount;
+            $invoice->save();
             Session::put('invoices_success_msg','تم تغير حالة الفاتورة بنجاح');
             return redirect()->route('invoices.index');
 

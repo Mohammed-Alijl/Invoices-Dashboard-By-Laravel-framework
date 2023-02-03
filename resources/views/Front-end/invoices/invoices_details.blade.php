@@ -79,10 +79,9 @@
                                                             <th class="border-bottom-0">نسبة الضريبة</th>
                                                             <th class="border-bottom-0">قيمة الضريبة</th>
                                                             <th class="border-bottom-0">الاجمالي</th>
-                                                            <th class="border-bottom-0">الحالات</th>
+                                                            <th class="border-bottom-0">المبلغ المتبقي</th>
+                                                            <th class="border-bottom-0">حالة الدفع</th>
                                                             <th class="border-bottom-0">تم الانشاء بواسطة</th>
-                                                            <th class="border-bottom-0">تاريخ الانشاء</th>
-                                                            <th class="border-bottom-0">تاريخ أخر تعديل</th>
                                                             <th class="border-bottom-0">الملاحظات</th>
                                                         </tr>
                                                         </thead>
@@ -98,6 +97,7 @@
                                                                 <td>{{$invoice->rate_vat}}</td>
                                                                 <td>{{$invoice->value_vat}}</td>
                                                                 <td>{{$invoice->total}}</td>
+                                                                <td>{{$invoice->remaining_amount}}</td>
                                                                 <td>
                                                                     @switch($invoice->value_status)
                                                                         @case(3)
@@ -112,8 +112,6 @@
                                                                     @endswitch
                                                                 </td>
                                                                 <td>{{$invoice->user->name}}</td>
-                                                                <td>{{$invoice->created_at}}</td>
-                                                                <td>{{$invoice->updated_at}}</td>
                                                                 <td>{{$invoice->note}}</td>
                                                             </tr>
                                                         </tbody>
@@ -123,7 +121,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane active" id="tab5">
+                                <div class="tab-pane" id="tab5">
                                     <div class="col-xl-12">
                                         <div class="card mg-b-20">
                                             <div class="card-header pb-0">
@@ -157,9 +155,9 @@
                                                                 <td>{{$invoice->id}}</td>
                                                                 <td>{{$invoice->invoice_number}}</td>
                                                                 <td>{{$invoice->due_date}}</td>
-                                                                <td>{{$invoice->total}}</td>
+                                                                <td>{{$payment->total}}</td>
                                                                 <td>{{$payment->collection_amount}}</td>
-                                                                <td>{{$invoice->total - $payment->collection_amount}}</td>
+                                                                <td>{{$payment->remaining_amount}}</td>
                                                                 <td>{{$payment->created_at}}</td>
                                                                 <td>
                                                                     @switch($payment->payment_status)

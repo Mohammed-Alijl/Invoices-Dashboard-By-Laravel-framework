@@ -28,6 +28,7 @@ return new class extends Migration
             $table->decimal('amount_collection',8,2)->nullable();;
             $table->decimal('amount_commission',8,2);
             $table->enum('value_status',[1,2,3])->default(1);
+            $table->decimal('remaining_amount',8,2);
             $table->text('note')->nullable();
             $table->softDeletes();
             $table->timestamps();

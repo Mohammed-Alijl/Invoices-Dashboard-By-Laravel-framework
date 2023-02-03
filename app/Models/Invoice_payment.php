@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice_payment extends Model
 {
     use HasFactory;
-    protected $fillable = ['invoice_id','collection_amount','payment_status' ,'user_id','note'];
+    protected $fillable = ['invoice_id','collection_amount','payment_status' ,'user_id','note','remaining_amount','total'];
 
     //==========================================================
     // RELATIONSHIPS============================================

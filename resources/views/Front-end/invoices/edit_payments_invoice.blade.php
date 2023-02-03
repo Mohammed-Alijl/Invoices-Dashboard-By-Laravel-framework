@@ -153,16 +153,17 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="inputName" class="control-label">قيمة ضريبة القيمة المضافة</label>
-                                <input type="text" class="form-control" id="Value_VAT" name="value_vat"
-                                       readonly value="{{$invoice->value_vat}}">
-                            </div>
-
-                            <div class="col">
                                 <label for="inputName" class="control-label">الاجمالي شامل الضريبة</label>
                                 <input type="text" class="form-control" id="Total" name="total"
                                        readonly value="{{$invoice->total}}">
                             </div>
+                            <div class="col">
+                                <label for="inputName" class="control-label">المبلغ المتبقي</label>
+                                <input type="text" class="form-control" id="Value_VAT" name="value_vat"
+                                       readonly value="{{$invoice->remaining_amount}}">
+                            </div>
+
+
                         </div>
 
                         {{-- 5 --}}

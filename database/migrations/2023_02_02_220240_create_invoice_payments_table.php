@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->decimal('collection_amount','8','2');
             $table->enum('payment_status',[1,2,3])->default(1);
+            $table->decimal('total',8,2);
+            $table->decimal('remaining_amount',8,2);
             $table->text('note')->nullable();
             $table->timestamps();
         });
