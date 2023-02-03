@@ -28,4 +28,21 @@ trait AttachmentTrait
             default => false,
         };
     }
+
+    function deleteDirectory($directory)
+    {
+        if (!file_exists($directory)) {
+            return;
+        }
+
+        $files = array_diff(scandir($directory), ['.', '..']);
+        foreach ($files as $file) {
+            if (is_dir("$directory/$file")) {
+                deleteDirectory("$directory/$file");
+            } else {
+                unlink("$directory/$file");
+            }
+        }
+        rmdir($directory);
+    }
 }

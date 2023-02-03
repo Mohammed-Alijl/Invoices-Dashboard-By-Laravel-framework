@@ -32,6 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::get('paid/invoices',[\App\Http\Controllers\InvoiceController::class,'invoicesPaid'])->name('invoices.paid');
     Route::get('invoices/not/paid',[\App\Http\Controllers\InvoiceController::class,'invoicesNotPaid'])->name('invoices.not.paid');
     Route::get('invoices/Partially/paid',[\App\Http\Controllers\InvoiceController::class,'invoicesPartiallyPaid'])->name('invoices.Partially.paid');
+    Route::get('deleted/invoices',[\App\Http\Controllers\InvoiceController::class,'deletedInvoices'])->name('invoices.deleted');
+    Route::get('recovery/invoices/{id}',[\App\Http\Controllers\InvoiceController::class,'recovery'])->name('invoices.recovery');
+    Route::delete('archive/invoices',[\App\Http\Controllers\InvoiceController::class,'archive'])->name('invoices.archive');
 });
 
 

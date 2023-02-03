@@ -32,6 +32,7 @@
 							<li><a class="slide-item" href="{{ route('invoices.paid') }}">الفواتير المدفوعة</a></li>
 							<li><a class="slide-item" href="{{ route('invoices.not.paid') }}">الفواتير الغير مدفوعة</a></li>
 							<li><a class="slide-item" href="{{ route('invoices.Partially.paid') }}">الفواتير المدفوعة جزئيا</a></li>
+							<li><a class="slide-item" href="{{ route('invoices.deleted') }}">الفواتير المحذوفة</a></li>
 						</ul>
 					</li>
 					<li class="side-item side-item-category">التقارير</li>

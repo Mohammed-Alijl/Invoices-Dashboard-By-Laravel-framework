@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    قائمة الفواتير
+    قائمة الفاوتير المحذوفة
 @endsection
 @section('css')
     <!-- Internal Data table css -->
@@ -16,7 +16,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة الفواتير</span>
+                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة الفواتير المحذوفة</span>
             </div>
         </div>
     </div>
@@ -52,14 +52,10 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">قائمة الفواتير</h4>
+                        <h4 class="card-title mg-b-0">قائمة الفواتير المحذوفة</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
                     <p class="tx-12 tx-gray-500 mb-2">
-                    <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20 mg-sm-t-0">
-                        <a class="modal-effect btn btn-outline-primary btn-block" href="invoices/create">اضافة
-                            فاتورة</a>
-                    </div>
                     </p>
                 </div>
                 <div class="card-body">
@@ -83,7 +79,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach(\App\Models\Invoice::get() as $invoice)
+                            @foreach($invoices as $invoice)
                                 <tr>
                                     <td>{{$invoice->id}}</td>
                                     <td>
@@ -119,18 +115,11 @@
                                             </button>
                                             <div class="dropdown-menu tx-13">
                                                 <a class="dropdown-item"
-                                                   href=" {{route('invoices.edit',$invoice->id) }}">تعديل الفاتورة</a>
+                                                   href=" {{route('invoices.recovery',$invoice->id) }}">استعادة الفاتورة</a>
                                                 <a class="dropdown-item" href="#" data-id="{{ $invoice->id }}"
                                                    data-toggle="modal" data-effect="effect-scale"
                                                    data-target="#modaldemo5"><i
-                                                        class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
-                                                    الفاتورة</a>
-                                                @if($invoice->value_status != 3)
-                                                <a class="dropdown-item" href="{{route('payments.edit',$invoice->id)}}">
-                                                    <i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp; تغير
-                                                    حالة الدفع
-                                                </a>
-                                                @endif
+                                                        class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة نهائيا</a>
                                             </div>
                                         </div>
 
@@ -154,7 +143,7 @@
                             aria-hidden="true">&times;</span></button>
                     <i class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
                     <h4 class="tx-danger mg-b-20">هل انت متأكد من حذف هذه الفاتورة نهائيا</h4>
-                    <form action="{{route('invoices.archive')}}" method="post" autocomplete="off" id="delete_form">
+                    <form action="../invoices/destroy" method="post" autocomplete="off" id="delete_form">
                         @csrf
                         @method('delete')
                         <input type="hidden" name="id" id="id" value="">

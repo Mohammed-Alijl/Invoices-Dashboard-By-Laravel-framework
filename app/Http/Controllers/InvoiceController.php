@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Invoices\ArchiveRequest;
+use App\Http\Requests\Invoices\CreateRequest;
 use App\Http\Requests\Invoices\InvoicesNotPaidRequest;
 use App\Http\Requests\Invoices\DestroyRequest;
 use App\Http\Requests\Invoices\IndexRequest;
+use App\Http\Requests\Invoices\DeletedInvoicesRequest;
 use App\Http\Requests\Invoices\InvoicesPaidRequest;
 use App\Http\Requests\Invoices\InvoicesPartialPaidRequest;
-use App\Http\Requests\Invoices\ShowRequest;
 use App\Http\Requests\Invoices\EditRequest;
+use App\Http\Requests\Invoices\RecoveryRequest;
+use App\Http\Requests\Invoices\ShowRequest;
 use App\Http\Requests\Invoices\StoreRequest;
 use App\Http\Requests\Invoices\UpdateRequest;
-use App\Models\Invoice;
-use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
@@ -31,7 +33,7 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(InvoicesNotPaidRequest $request)
+    public function create(CreateRequest $request)
     {
         return $request->run();
     }
@@ -39,7 +41,7 @@ class InvoiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRequest $request)
@@ -52,7 +54,7 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(ShowRequest $request,$id)
+    public function show(ShowRequest $request, $id)
     {
         return $request->run($id);
     }
@@ -72,13 +74,33 @@ class InvoiceController extends Controller
         return $request->run();
     }
 
-    public function invoicesPaid(InvoicesPaidRequest $request){
+    public function archive(ArchiveRequest $request)
+    {
         return $request->run();
     }
-    public function invoicesPartiallyPaid(InvoicesPartialPaidRequest $request){
+
+    public function invoicesPaid(InvoicesPaidRequest $request)
+    {
         return $request->run();
     }
-    public function invoicesNotPaid(InvoicesNotPaidRequest $request){
+
+    public function invoicesPartiallyPaid(InvoicesPartialPaidRequest $request)
+    {
         return $request->run();
+    }
+
+    public function invoicesNotPaid(InvoicesNotPaidRequest $request)
+    {
+        return $request->run();
+    }
+
+    public function deletedInvoices(DeletedInvoicesRequest $request)
+    {
+        return $request->run();
+    }
+
+    public function recovery(RecoveryRequest $request, $id)
+    {
+        return $request->run($id);
     }
 }
