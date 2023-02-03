@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/', function () {return view('dashboard');})->name('dashboard');
     Route::get('/section/{id}',[\App\Http\Controllers\SectionController::class,'products']);
+    Route::get('paid/invoices',[\App\Http\Controllers\InvoiceController::class,'invoicesPaid'])->name('invoices.paid');
+    Route::get('invoices/not/paid',[\App\Http\Controllers\InvoiceController::class,'invoicesNotPaid'])->name('invoices.not.paid');
+    Route::get('invoices/Partially/paid',[\App\Http\Controllers\InvoiceController::class,'invoicesPartiallyPaid'])->name('invoices.Partially.paid');
 });
 
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Invoices\CreateRequest;
+use App\Http\Requests\Invoices\InvoicesNotPaidRequest;
 use App\Http\Requests\Invoices\DestroyRequest;
 use App\Http\Requests\Invoices\IndexRequest;
+use App\Http\Requests\Invoices\InvoicesPaidRequest;
+use App\Http\Requests\Invoices\InvoicesPartialPaidRequest;
 use App\Http\Requests\Invoices\ShowRequest;
 use App\Http\Requests\Invoices\EditRequest;
 use App\Http\Requests\Invoices\StoreRequest;
@@ -29,7 +31,7 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CreateRequest $request)
+    public function create(InvoicesNotPaidRequest $request)
     {
         return $request->run();
     }
@@ -67,6 +69,16 @@ class InvoiceController extends Controller
 
     public function destroy(DestroyRequest $request)
     {
+        return $request->run();
+    }
+
+    public function invoicesPaid(InvoicesPaidRequest $request){
+        return $request->run();
+    }
+    public function invoicesPartiallyPaid(InvoicesPartialPaidRequest $request){
+        return $request->run();
+    }
+    public function invoicesNotPaid(InvoicesNotPaidRequest $request){
         return $request->run();
     }
 }
