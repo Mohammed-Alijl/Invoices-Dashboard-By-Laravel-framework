@@ -65,7 +65,7 @@ class StoreRequest extends FormRequest
             $payment->total = intval($total);
             $payment->remaining_amount = intval($total);
             $payment->save();
-            Auth::user()->notify(new NewInvoice($invoice));
+//            Auth::user()->notify(new NewInvoice($invoice));
                 return redirect()->route('invoices.index');
         }catch (Exception $ex){
             return redirect()->route('invoices.index')->withErrors('invoices_failed_msg',$ex->getMessage());
