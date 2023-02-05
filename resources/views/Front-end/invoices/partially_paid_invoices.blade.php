@@ -60,7 +60,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="table key-buttons text-md-nowrap">
+                        <table id="example2" class="table key-buttons text-md-nowrap">
                             <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>
