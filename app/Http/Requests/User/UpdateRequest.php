@@ -37,7 +37,7 @@ class UpdateRequest extends FormRequest
             if($this->filled('email'))
                 $user->email = $this->email;
             if($this->filled('password'))
-                $user->password = Hash::make($this->name);
+                $user->password = Hash::make($this->password);
             if($this->filled('roles_name'))
                 $user->roles_name = $this->roles_name;
             if($this->filled('status'))
