@@ -30,11 +30,26 @@
 @endsection
 
 @section('content')
-
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+    @endif
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ session()->get('success') }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {{Session::forget('success')}}
     @endif
 
     <!-- row opened -->
@@ -64,7 +79,7 @@
                             <tbody>
                             @foreach ($data as $key => $user)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
+                                    <td><a href="{{route('users.show',$user->id)}}">{{ $user->id }}</a></td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
@@ -88,6 +103,8 @@
                                     </td>
 
                                     <td>
+
+                                        @if(!in_array('super admin',$user->getRoleNames()->toArray()))
                                         @can('edit-user')
                                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
                                                title="تعديل"><i class="las la-pen"></i></a>
@@ -99,6 +116,7 @@
                                                data-toggle="modal" href="#modaldemo8" title="حذف"><i
                                                     class="las la-trash"></i></a>
                                         @endcan
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -118,12 +136,12 @@
                         <h6 class="modal-title">حذف المستخدم</h6><button aria-label="Close" class="close"
                                                                          data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
-                    <form action="{{ route('users.destroy', 'test') }}" method="post">
-                        {{ method_field('delete') }}
-                        {{ csrf_field() }}
+                    <form action="users/destroy" method="post">
+                        @csrf
+                        @method('delete')
                         <div class="modal-body">
                             <p>هل انت متاكد من عملية الحذف ؟</p><br>
-                            <input type="hidden" name="user_id" id="user_id" value="">
+                            <input type="hidden" name="id" id="user_id" value="">
                             <input class="form-control" name="username" id="username" type="text" readonly>
                         </div>
                         <div class="modal-footer">
