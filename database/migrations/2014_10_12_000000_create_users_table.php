@@ -22,6 +22,8 @@ class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image');
+            $table->enum('status',[0,1]);
+            $table->text('roles_name');
             $table->rememberToken();
             $table->timestamps();
         });

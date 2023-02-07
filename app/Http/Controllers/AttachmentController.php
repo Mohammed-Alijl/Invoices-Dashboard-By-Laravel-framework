@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class AttachmentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('Permission:display-attachments',['only'=>'index,show']);
+        $this->middleware('Permission:add-attachment',['only'=>'create','store']);
+        $this->middleware('Permission:delete-attachment',['only'=>'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *

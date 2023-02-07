@@ -114,21 +114,29 @@
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i>
                                             </button>
                                             <div class="dropdown-menu tx-13">
+                                                @can('edit-invoice')
                                                 <a class="dropdown-item"
                                                    href=" {{route('invoices.edit',$invoice->id) }}">تعديل الفاتورة</a>
-                                                <a class="dropdown-item" href="#" data-id="{{ $invoice->id }}"
+                                                @endcan
+                                                    @can('soft-delete-invoice')
+                                                    <a class="dropdown-item" href="#" data-id="{{ $invoice->id }}"
                                                    data-toggle="modal" data-effect="effect-scale"
                                                    data-target="#modaldemo5"><i
                                                         class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                                     الفاتورة</a>
+                                                    @endcan
+                                                    @can('payment-change-status')
                                                 <a class="dropdown-item" href="{{route('payments.edit',$invoice->id)}}">
                                                     <i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp; تغير
                                                     حالة الدفع
                                                 </a>
+                                                    @endcan
+                                                    @can('print-invoice')
                                                 <a class="dropdown-item" href="{{route('invoices.print',$invoice->id)}}"><i
                                                         class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                                     الفاتورة
                                                 </a>
+                                                    @endcan
                                             </div>
                                         </div>
 

@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Session;
 
 class SectionController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:sections', ['only' => ['index,show']]);
+        $this->middleware('permission:add-section', ['only' => ['create','store']]);
+        $this->middleware('permission:edit-section', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-section', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -55,9 +55,11 @@
                         <h4 class="card-title mg-b-0">قائمة الأقسام</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
+                    @can('add-section')
                     <p class="tx-12 tx-gray-500 mb-2"><div class="col-sm-6 col-md-4 col-xl-3 mg-t-20 mg-sm-t-0">
                         <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-slide-in-right" data-toggle="modal" href="#modaldemo8">اضافة قسم</a>
                     </div></p>
+                    @endcan
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -78,15 +80,18 @@
                                 <td>{{$section->name}}</td>
                                 <td>{{$section->description}}</td>
                                 <td>
+                                    @can('edit-section')
                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                            data-id="{{ $section->id }}" data-section_name="{{ $section->name }}"
                                            data-description="{{ $section->description }}" data-toggle="modal"
                                            href="#modaldemo1" title="تعديل"><i class="las la-pen"></i></a>
-
+                                    @endcan
+                                    @can('delete-section')
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $section->id }}" data-section_name="{{ $section->name }}"
                                            data-toggle="modal" href="#modaldemo5" title="حذف"><i
                                                 class="las la-trash"></i></a>
+                                        @endcan
                                     </td>
                                 <td>.</td>
                             </tr>

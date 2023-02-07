@@ -53,9 +53,11 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                     </div>
+                    @can('add-product')
                     <p class="tx-12 tx-gray-500 mb-2"><div class="col-sm-6 col-md-4 col-xl-3 mg-t-20 mg-sm-t-0">
                         <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-slide-in-right" data-toggle="modal" href="#modaldemo8">اضافة منتج</a>
                     </div></p>
+                    @endcan
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -78,15 +80,18 @@
                                     <td>{{$product->description}}</td>
                                     <td>{{$product->section->name}}</td>
                                     <td>
+                                        @can('edit-product')
                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                            data-id="{{ $product->id }}" data-product_name="{{ $product->name }}"
                                             data-description="{{ $product->description }}" data-section_name="{{ $product->section->name }}"
                                            data-toggle="modal" href="#modaldemo1" title="تعديل"><i class="las la-pen"></i></a>
-
+                                        @endcan
+                                        @can('delete-product')
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $product->id }}" data-product_name="{{ $product->name }}"
                                            data-toggle="modal" href="#modaldemo5" title="حذف"><i
                                                 class="las la-trash"></i></a>
+                                            @endcan
                                     </td>
                                     <td>.</td>
                                 </tr>

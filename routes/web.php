@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +20,8 @@ require __DIR__.'/auth.php';
 
 
 Route::middleware('auth')->group(function () {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
     Route::resource('invoices',\App\Http\Controllers\InvoiceController::class);
     Route::resource('sections',\App\Http\Controllers\SectionController::class);
     Route::resource('products',\App\Http\Controllers\ProductController::class);

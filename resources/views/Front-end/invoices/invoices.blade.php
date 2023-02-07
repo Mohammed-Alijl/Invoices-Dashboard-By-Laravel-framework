@@ -55,12 +55,14 @@
                         <h4 class="card-title mg-b-0">قائمة الفواتير</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
+                    @can('add-invoice')
                     <p class="tx-12 tx-gray-500 mb-2">
                     <div class="col-sm-6 col-md-4 col-xl-3 mg-t-20 mg-sm-t-0">
                         <a class="modal-effect btn btn-outline-primary btn-block" href="invoices/create">اضافة
                             فاتورة</a>
                     </div>
                     </p>
+                    @endcan
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -87,7 +89,11 @@
                                 <tr>
                                     <td>{{$invoice->id}}</td>
                                     <td>
+                                        @can('invoice-details')
                                         <a href="{{route('invoices.show',$invoice->id)}}">{{$invoice->invoice_number}}</a>
+                                        @else
+                                        {{$invoice->invoice_number}}
+                                        @endcan
                                     </td>
                                     <td>{{$invoice->invoice_Date}}</td>
                                     <td>{{$invoice->due_date}}</td>
@@ -118,23 +124,31 @@
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i>
                                             </button>
                                             <div class="dropdown-menu tx-13">
+                                                @can('edit-invoice')
                                                 <a class="dropdown-item"
                                                    href=" {{route('invoices.edit',$invoice->id) }}">تعديل الفاتورة</a>
-                                                <a class="dropdown-item" href="#" data-id="{{ $invoice->id }}"
+                                                @endcan
+                                                @can('soft-delete-invoice')
+                                                    <a class="dropdown-item" href="#" data-id="{{ $invoice->id }}"
                                                    data-toggle="modal" data-effect="effect-scale"
                                                    data-target="#modaldemo5"><i
                                                         class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف
                                                     الفاتورة</a>
+                                                    @endcan
+                                                @can('payment-change-status')
                                                 @if($invoice->value_status != 3)
                                                 <a class="dropdown-item" href="{{route('payments.edit',$invoice->id)}}">
                                                     <i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp; تغير
                                                     حالة الدفع
                                                 </a>
                                                 @endif
+                                                @endcan
+                                                    @can('print-invoice')
                                                 <a class="dropdown-item" href="{{route('invoices.print',$invoice->id)}}"><i
                                                         class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة
                                                     الفاتورة
                                                 </a>
+                                                    @endcan
                                             </div>
                                         </div>
 

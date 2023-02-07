@@ -114,12 +114,16 @@
                                                     type="button">العمليات<i class="fas fa-caret-down ml-1"></i>
                                             </button>
                                             <div class="dropdown-menu tx-13">
+                                                @can('recover-invoice')
                                                 <a class="dropdown-item"
                                                    href=" {{route('invoices.recovery',$invoice->id) }}">استعادة الفاتورة</a>
+                                                @endcan
+                                                @can('delete-invoice')
                                                 <a class="dropdown-item" href="#" data-id="{{ $invoice->id }}"
                                                    data-toggle="modal" data-effect="effect-scale"
                                                    data-target="#modaldemo5"><i
                                                         class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة نهائيا</a>
+                                                    @endcan
                                             </div>
                                         </div>
 

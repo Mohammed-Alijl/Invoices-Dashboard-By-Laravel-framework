@@ -46,8 +46,12 @@
                                 <!-- Tabs -->
                                 <ul class="nav panel-tabs main-nav-line">
                                     <li><a href="#tab4" class="nav-link active" data-toggle="tab">تفاصيل الفاتورة</a></li>
+                                    @can('display-payment-status')
                                     <li><a href="#tab5" class="nav-link" data-toggle="tab">حالات الدفع</a></li>
+                                    @endcan
+                                    @can('display-attachments')
                                     <li><a href="#tab6" class="nav-link" data-toggle="tab">المرفقات</a></li>
+                                    @endcan
                                 </ul>
                             </div>
                         </div>
@@ -121,6 +125,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @can('display-payment-status')
                                 <div class="tab-pane" id="tab5">
                                     <div class="col-xl-12">
                                         <div class="card mg-b-20">
@@ -183,7 +188,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcan
+                                @can('display-attachments')
                                 <div class="tab-pane" id="tab6">
+                                    @can('add-attachment')
                                     <div class="card-body">
                                         <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                                         <h5 class="card-title">اضافة مرفقات</h5>
@@ -204,6 +212,7 @@
                                                     name="uploadedFile">تاكيد</button>
                                         </form>
                                     </div>
+                                    @endcan
                                     <div class="col-xl-12">
                                         <div class="card mg-b-20">
                                             <div class="card-header pb-0">
@@ -245,10 +254,12 @@
                                                                        role="button"><i
                                                                             class="fas fa-download"></i>&nbsp;
                                                                         تحميل</a>
+                                                                    @can('delete-attachment')
                                                                     <button class="btn btn-outline-danger btn-sm"
                                                                             data-toggle="modal"
                                                                             data-id="{{ $attachment->id }}"
                                                                             data-target="#modaldemo5">حذف</button>
+                                                                    @endcan
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -259,7 +270,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                @endcan
 
                             </div>
                         </div>

@@ -19,6 +19,21 @@ use App\Http\Requests\Invoices\UpdateRequest;
 
 class InvoiceController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:invoices-list', ['only' => ['index']]);
+        $this->middleware('permission:invoice-details', ['only' => ['show']]);
+        $this->middleware('permission:add-invoice', ['only' => ['create','store']]);
+        $this->middleware('permission:edit-invoice', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete-invoice', ['only' => ['destroy']]);
+        $this->middleware('permission:soft-delete-invoice', ['only' => ['archive']]);
+        $this->middleware('permission:paid-invoices-list', ['only' => ['invoicesPaid']]);
+        $this->middleware('permission:partially-paid-invoices-list', ['only' => ['invoicesPartiallyPaid']]);
+        $this->middleware('permission:unpaid-invoices-list', ['only' => ['invoicesNotPaid']]);
+        $this->middleware('permission:deleted-invoices-list', ['only' => ['deletedInvoices']]);
+        $this->middleware('permission:print-invoice', ['only' => ['print']]);
+        $this->middleware('permission:recover-invoice', ['only' => ['recovery']]);
+    }
     /**
      * Display a listing of the resource.
      *

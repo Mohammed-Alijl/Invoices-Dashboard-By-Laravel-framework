@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:payment-change-status', ['only' => ['edit','update']]);
+    }
     /**
      * Display a listing of the resource.
      *
