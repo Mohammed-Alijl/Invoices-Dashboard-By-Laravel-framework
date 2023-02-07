@@ -19,7 +19,7 @@ class CreateAdminUserSeeder extends Seeder
         $user->name = 'Mohammed Alajel';
         $user->email = 'admin@admin.com';
         $user->password = bcrypt('123456789');
-        $user->image = 'me.jpg';
+        $user->image = 'default.jpg';
         $user->status = '1';
         $user->roles_name = ['super admin'];
         $user->save();
