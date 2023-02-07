@@ -40,6 +40,8 @@ class UpdateRequest extends FormRequest
                 $user->password = Hash::make($this->name);
             if($this->filled('roles_name'))
                 $user->roles_name = $this->roles_name;
+            if($this->filled('status'))
+                $user->status = $this->status;
             if ($files = $this->file('pic')) {
                 if($user->image != 'default.jpg')
                 $this->delete_attachment('assets/img/users/' . $user->image);
