@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('recovery/invoices/{id}',[\App\Http\Controllers\InvoiceController::class,'recovery'])->name('invoices.recovery');
     Route::delete('archive/invoices',[\App\Http\Controllers\InvoiceController::class,'archive'])->name('invoices.archive');
     Route::get('print/invoices/{id}',[\App\Http\Controllers\InvoiceController::class,'print'])->name('invoices.print');
+    Route::get('reports/invoices',[\App\Http\Controllers\InvoiceReportController::class,'index'])->name('reports.invoices');
+    Route::post('search/invoices',[\App\Http\Controllers\InvoiceReportController::class,'search'])->name('invoices.search');
 });
 
 
