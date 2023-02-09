@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::get('print/invoices/{id}',[\App\Http\Controllers\InvoiceController::class,'print'])->name('invoices.print');
     Route::get('reports/invoices',[\App\Http\Controllers\InvoiceReportController::class,'index'])->name('reports.invoices');
     Route::post('search/invoices',[\App\Http\Controllers\InvoiceReportController::class,'search'])->name('invoices.search');
+    Route::get('reports/customers',[\App\Http\Controllers\CustomerReportController::class,'index'])->name('reports.customers');
+    Route::post('search/customers',[\App\Http\Controllers\CustomerReportController::class,'search'])->name('customers.search');
 });
 
 

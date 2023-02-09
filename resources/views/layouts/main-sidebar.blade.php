@@ -56,7 +56,7 @@
 							<li><a class="slide-item" href="{{ route('reports.invoices') }}">تقرير الفواتير</a></li>
                             @endcan
                                 @can('customer-reports')
-							<li><a class="slide-item" href="{{ url('/' . $page='darggablecards') }}">تقرير العملاء</a></li>
+							<li><a class="slide-item" href="{{ route('reports.customers') }}">تقرير العملاء</a></li>
                                 @endcan
 						</ul>
 					</li>
