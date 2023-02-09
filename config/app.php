@@ -182,6 +182,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
         /*
          * Package Service Providers...
          */
