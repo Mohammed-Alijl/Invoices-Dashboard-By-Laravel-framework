@@ -5,11 +5,14 @@ namespace App\Http\Requests\Invoices;
 use App\Models\Attachment;
 use App\Models\Invoice;
 use App\Models\Invoice_payment;
+use App\Models\User;
+use App\Notifications\InvoiceCreated;
 use App\Notifications\NewInvoice;
 use App\Traits\AttachmentTrait;
 use Exception;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class StoreRequest extends FormRequest
@@ -66,6 +69,7 @@ class StoreRequest extends FormRequest
             $payment->remaining_amount = intval($total);
             $payment->save();
 //            Auth::user()->notify(new NewInvoice($invoice));
+            Notification::send(User::where('id','!=',Auth::id())->get(),new InvoiceCreated($invoice->id));
                 return redirect()->route('invoices.index');
         }catch (Exception $ex){
             return redirect()->route('invoices.index')->withErrors('invoices_failed_msg',$ex->getMessage());
