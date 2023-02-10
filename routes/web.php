@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::post('search/invoices',[\App\Http\Controllers\InvoiceReportController::class,'search'])->name('invoices.search');
     Route::get('reports/customers',[\App\Http\Controllers\CustomerReportController::class,'index'])->name('reports.customers');
     Route::post('search/customers',[\App\Http\Controllers\CustomerReportController::class,'search'])->name('customers.search');
+    Route::get('notification/mark/all',[\App\Http\Controllers\NotificationController::class,'markAllAsRead'])->name('notification.mark.all');
+    Route::get('notification/display/{id}',[\App\Http\Controllers\NotificationController::class,'display'])->name('notification.display');
 });
 
 
