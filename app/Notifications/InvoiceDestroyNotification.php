@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
-class InvoiceCreated extends Notification
+class InvoiceDestroyNotification extends Notification
 {
     use Queueable;
 
@@ -41,13 +41,13 @@ class InvoiceCreated extends Notification
      */
     public function toArray($notifiable)
     {
-        $userName = Auth::user()->name;
+        $userName = auth()->user()->name;
         return [
             'invoice_id'=>$this->invoice_id,
             'user_name'=>$userName,
             'image'=>Auth::user()->image,
-            'title'=> 'تم اضافة فاتورة جديدة بواسطة: ' . $userName ,
-            'page'=>'invoice_store'
-        ];
+            'title'=> 'تم حذف فاتورة نهائيا بواسطة: ' . $userName ,
+            'page'=>'invoice_destroy'
+            ];
     }
 }

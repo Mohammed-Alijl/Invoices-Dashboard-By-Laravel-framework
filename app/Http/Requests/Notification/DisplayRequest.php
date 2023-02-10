@@ -18,15 +18,23 @@ class DisplayRequest extends FormRequest
         return true;
     }
 
-    public function run($id){
+    public function run($id)
+    {
         $notification = DB::table('notifications')->find($id);
-        if(!$notification)
+        if (!$notification)
             return redirect()->back();
         $notifiable = Auth::user();
         $notification = $notifiable->notifications()->find($id);
         $notification->markAsRead();
-        $invoice_id = $notification->data['invoice_id'];
-        return redirect(route('invoices.show',$invoice_id));
+        switch ($notification->data['page']):
+            case 'invoice_store' :
+                $invoice_id = $notification->data['invoice_id'];
+                return redirect(route('invoices.show', $invoice_id));
+            case 'invoice_archive':
+                return redirect(route('invoices.deleted'));
+            default:
+                return redirect()->back();
+        endswitch;
     }
 
     /**

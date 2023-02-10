@@ -3,9 +3,14 @@
 namespace App\Http\Requests\Invoices;
 
 use App\Models\Invoice;
+use App\Models\User;
+use App\Notifications\InvoiceArchiveNotification;
+use App\Notifications\InvoiceDestroyNotification;
 use App\Traits\AttachmentTrait;
 use Exception;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,6 +35,7 @@ class DestroyRequest extends FormRequest
             $this->deleteDirectory('assets/img/invoices/' . $invoice->invoice_number);
             if($invoice->forceDelete()){
                 Session::put('invoices_success_msg','تم حذف الفاتورة بنجاح');
+                Notification::send(User::where('id','!=',Auth::id())->get(),new InvoiceDestroyNotification($this->id));
                 return redirect()->back();
             }else
                 return redirect()->back()->withErrors(['invoices_failed_msg'=>'حدث خطا اثناء محاولة حذف الفاتورة, الرجاء المحاولة مرة اخرى']);
