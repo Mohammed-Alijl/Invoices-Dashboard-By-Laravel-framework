@@ -1,5 +1,6 @@
 var notificationsContainer = document.getElementById("notifications-container");
 var unreadNotifications = document.getElementById("notification-count");
+var bell = document.getElementById("bell");
 // Establish a connection to Pusher
 
 const pusher = new Pusher('ef9c95ec243dbea733cd', {
@@ -14,6 +15,11 @@ channel.bind("App\\Events\\NewNotification", function(data) {
     var textCenter = mainNotificationList.querySelector(".text-center");
     if (textCenter) {
         textCenter.remove();
+        const span = document.createElement("span");
+        span.classList.add("pulse");
+
+        const svg = bell.querySelector("svg");
+        bell.insertBefore(span, svg);
     }
 
     var notification = document.createElement("a");
