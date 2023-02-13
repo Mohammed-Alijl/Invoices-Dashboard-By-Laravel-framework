@@ -25,6 +25,9 @@
 <script src="{{URL::asset('assets/plugins/sidebar/sidebar-custom.js')}}"></script>
 <!-- Eva-icons js -->
 <script src="{{URL::asset('assets/js/eva-icons.min.js')}}"></script>
+
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script src="{{URL::asset('assets/js/real-time-notification.js')}}"> </script>
 @yield('js')
 <!-- Sticky js -->
 <script src="{{URL::asset('assets/js/sticky.js')}}"></script>

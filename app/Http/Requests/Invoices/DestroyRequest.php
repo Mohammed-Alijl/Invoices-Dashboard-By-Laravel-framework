@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Invoices;
 
+use App\Events\NewNotification;
 use App\Models\Invoice;
 use App\Models\User;
 use App\Notifications\InvoiceArchiveNotification;
@@ -36,6 +37,10 @@ class DestroyRequest extends FormRequest
             if($invoice->forceDelete()){
                 Session::put('invoices_success_msg','تم حذف الفاتورة بنجاح');
                 Notification::send(User::where('id','!=',Auth::id())->get(),new InvoiceDestroyNotification($this->id));
+                event(new NewNotification(
+                    $this->id,
+                    'تم حذف فاتورة نهائيا بواسطة: ' . auth()->user()->name ,
+                ));
                 return redirect()->back();
             }else
                 return redirect()->back()->withErrors(['invoices_failed_msg'=>'حدث خطا اثناء محاولة حذف الفاتورة, الرجاء المحاولة مرة اخرى']);

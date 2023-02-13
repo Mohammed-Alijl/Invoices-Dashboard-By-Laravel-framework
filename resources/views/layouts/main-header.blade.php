@@ -164,9 +164,9 @@
 											<h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات</h6>
 											<a href="{{route('notification.mark.all')}}" class="badge badge-pill badge-warning mr-auto my-auto float-left">تحديد الكل كمقروء</a>
 										</div>
-										<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">عدد الاشعارات الغير مقروءة: {{auth()->user()->unreadNotifications->count()}}</p>
+										<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">عدد الاشعارات الغير مقروءة: <span id="notification-count">{{auth()->user()->unreadNotifications->count()}}</span></p>
 									</div>
-									<div class="main-notification-list Notification-scroll">
+									<div class="main-notification-list Notification-scroll" id="notifications-container">
                                         @if(auth()->user()->unreadNotifications->count() < 1)
                                             <div class="d-flex p-3 border-bottom">
                                                 <div class=" text-center">

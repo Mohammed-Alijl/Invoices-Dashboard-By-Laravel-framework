@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Invoices;
 
+use App\Events\NewNotification;
 use App\Models\Attachment;
 use App\Models\Invoice;
 use App\Models\Invoice_payment;
@@ -70,6 +71,10 @@ class StoreRequest extends FormRequest
             $payment->save();
 //            Auth::user()->notify(new NewInvoice($invoice));
             Notification::send(User::where('id','!=',Auth::id())->get(),new InvoiceCreated($invoice->id));
+            event(new \App\Events\NewNotification(
+                $invoice->id,
+                'تم اضافة فاتورة جديدة بواسطة: ' . Auth::user()->name,
+            ));
                 return redirect()->route('invoices.index');
         }catch (Exception $ex){
             return redirect()->route('invoices.index')->withErrors('invoices_failed_msg',$ex->getMessage());
