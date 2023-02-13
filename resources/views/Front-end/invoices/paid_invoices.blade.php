@@ -154,7 +154,7 @@
                             aria-hidden="true">&times;</span></button>
                     <i class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
                     <h4 class="tx-danger mg-b-20">هل انت متأكد من حذف هذه الفاتورة نهائيا</h4>
-                    <form action="invoices/destroy" method="post" autocomplete="off" id="delete_form">
+                    <form action="{{route('invoices.archive')}}" method="post" autocomplete="off" id="delete_form">
                         @csrf
                         @method('delete')
                         <input type="hidden" name="id" id="id" value="">
