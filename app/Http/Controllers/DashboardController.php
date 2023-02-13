@@ -39,7 +39,7 @@ class DashboardController extends Controller
                     "label" => "الفواتير المدفوعة",
                     'backgroundColor' => ['#6ECCAF'], //all, paid invoices
                     'data' => [$paid_invoices],
-                    'hoverBackgroundColor' => '#68B984'
+                    'hoverBackgroundColor' => 'rgb(62,201,173)'
                 ],
                 [
                     "label" => "الفواتير المدفوعة جزئيا",
@@ -77,7 +77,7 @@ class DashboardController extends Controller
             ->datasets([
                 [
                     'backgroundColor' => ['#FF597B', '#6ECCAF', '#FFB26B'],
-                    'hoverBackgroundColor' => ['#EB455F', '#68B984', '#F2921D'],
+                    'hoverBackgroundColor' => ['#EB455F', 'rgb(62,201,173)', '#F2921D'],
                     'data' => [$unpaid_invoices, $paid_invoices, $partially_paid_invoices]
                 ]
             ])
@@ -99,12 +99,14 @@ class DashboardController extends Controller
                     'data' => [$activeUser, $unActiveUser],
                     'backgroundColor' => [
                         '#FF597B',
-                        'rgb(54, 162, 235)',
+                        '#5d78ff',
                     ],
                     'hoverOffset' => 1,
                 ]
             ])
-            ->options([]);
+            ->options([
+                'cutoutPercentage' => 70
+            ]);
     }
 
     private function lineChart()
