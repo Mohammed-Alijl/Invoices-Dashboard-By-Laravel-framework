@@ -1,0 +1,22 @@
+<?php
+return [
+    'welcome.back'=>'Welcome Back, ',
+    'dashboard.info'=>'Dashboard For Invoices System',
+    'total.invoices'=>'Total Invoices',
+    'paid.invoices'=>'Paid Invoices',
+    'unpaid.invoices'=>'Unpaid Invoices',
+    'partially.paid.invoices'=>'Partially Paid Invoices',
+    'invoices.count'=>'Invoices Count: ',
+    'sections.count'=>'Banks Count',
+    'products.count'=>'Transitions Count',
+    'bar.chart.title'=>'Bar Chart For Invoices Percentage',
+    'bar.chart.description'=>'The Percentage Of Paid, Unpaid And Partially Paid Invoices',
+    'pie.chart.title'=>'Pie Chart For Invoices Percentage',
+    'pie.chart.description'=>'Pie Chart For The Percentage Of Paid, Unpaid And Partially Paid Invoices',
+    'doughnut.chart.title'=>'Doughnut Chart Users',
+    'doughnut.chart.description'=>'Doughnut Chart For The Percentage Of Active And Inactive Users',
+    'users.active'=>'Active Users',
+    'users.inactive'=>'Inactive Users',
+    'line.chart.title'=>'Invoices Added During The Months',
+    'line.chart.description'=>'A Chart Showing The Invoices Added During The Months Of The Year, Showing The Number Of Paid, Unpaid And Partially Paid Invoices Added During Each Month',
+];

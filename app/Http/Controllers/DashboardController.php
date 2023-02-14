@@ -27,22 +27,22 @@ class DashboardController extends Controller
             ->name('barChartInvoices')
             ->type('bar')
             ->size(['width' => 200, 'height' => 120])
-            ->labels(['الفواتير الغير مدفوعة', 'الفواتير المدفوعة', 'الفواتير المدفوعة جزئيا'])
+            ->labels([__('Front-end/dashboard.unpaid.invoices'), __('Front-end/dashboard.paid.invoices'), __('Front-end/dashboard.partially.paid.invoices')])
             ->datasets([
                 [
-                    "label" => "الفواتير الغير مدفوعة",
+                    "label" => __('Front-end/dashboard.unpaid.invoices'),
                     'backgroundColor' => ['#FF597B'], //unpaid, partially paid invoices
                     'data' => [$unpaid_invoices],
                     'hoverBackgroundColor' => '#EB455F'
                 ],
                 [
-                    "label" => "الفواتير المدفوعة",
+                    "label" => __('Front-end/dashboard.paid.invoices'),
                     'backgroundColor' => ['#6ECCAF'], //all, paid invoices
                     'data' => [$paid_invoices],
                     'hoverBackgroundColor' => 'rgb(62,201,173)'
                 ],
                 [
-                    "label" => "الفواتير المدفوعة جزئيا",
+                    "label" => __('Front-end/dashboard.partially.paid.invoices'),
                     'backgroundColor' => ['#FFB26B'], //all, paid invoices
                     'data' => [$partially_paid_invoices],
                     'hoverBackgroundColor' => '#F2921D'
@@ -73,7 +73,7 @@ class DashboardController extends Controller
             ->name('pieChartInvoices')
             ->type('pie')
             ->size(['width' => 200, 'height' => 130])
-            ->labels(['الفواتير الغير مدفوعة', 'الفواتير المدفوعة', 'الفواتير المدفوعة جزئيا'])
+            ->labels([__('Front-end/dashboard.unpaid.invoices'), __('Front-end/dashboard.paid.invoices'), __('Front-end/dashboard.partially.paid.invoices')])
             ->datasets([
                 [
                     'backgroundColor' => ['#FF597B', '#6ECCAF', '#FFB26B'],
@@ -92,7 +92,7 @@ class DashboardController extends Controller
             ->name('donatChartUsers')
             ->type('doughnut')
             ->size(['width' => 200, 'height' => 90])
-            ->labels(['المستخدمين المعطلين', 'المستخدمين الفعالين'])
+            ->labels([__('Front-end/dashboard.users.inactive'), __('Front-end/dashboard.users.active')])
             ->datasets([
                 [
                     'label' => 'Users',
@@ -145,7 +145,7 @@ class DashboardController extends Controller
             ->labels(['January', 'February', 'March', 'April', 'May', 'June', 'July'])
             ->datasets([
                 [
-                    "label" => "الفواتير المدفوعة",
+                    "label" => __('Front-end/dashboard.paid.invoices'),
                     'backgroundColor' => "rgba(38, 185, 154, 0.31)",
                     'borderColor' => "rgba(38, 185, 154, 0.7)",
                     "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
@@ -155,7 +155,7 @@ class DashboardController extends Controller
                     'data' => [$januaryPaidInvoices, $februaryPaidInvoices, $marchPaidInvoices, $aprilPaidInvoices, $mayPaidInvoices, $junePaidInvoices, $julyPaidInvoices],
                 ],
                 [
-                    "label" => "الفواتير الغير مدفوعة",
+                    "label" =>__('Front-end/dashboard.unpaid.invoices'),
                     'backgroundColor' => "rgba(255, 89, 123, 0.31)",
                     'borderColor' => "rgba(255, 89, 123 , 0.7)",
                     "pointBorderColor" => "rgba(255, 89, 123 , 0.7)",
@@ -165,7 +165,7 @@ class DashboardController extends Controller
                     'data' => [$januaryUnpaidInvoices, $februaryUnpaidInvoices, $marchUnpaidInvoices, $aprilUnpaidInvoices, $mayUnpaidInvoices, $juneUnpaidInvoices, $julyUnpaidInvoices],
                 ],
                 [
-                    "label" => "الفواتير المدفوعة جزئيا",
+                    "label" =>__('Front-end/dashboard.partially.paid.invoices'),
                     'backgroundColor' => "rgba(242, 146, 29, 0.31)",
                     'borderColor' => "rgba(242, 146, 29 , 0.7)",
                     "pointBorderColor" => "rgba(242, 146, 29 , 0.7)",

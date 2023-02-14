@@ -13,18 +13,17 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="left-content">
             <div>
-                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">مرحبا بعودك
-                    يا {{\Illuminate\Support\Facades\Auth::user()->name}}</h2>
-                <p class="mg-b-0">لوحة التحكم بنظام الفواتير</p>
+                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{__('Front-end/dashboard.welcome.back') . \Illuminate\Support\Facades\Auth::user()->name}}</h2>
+                <p class="mg-b-0">{{__('Front-end/dashboard.dashboard.info')}}</p>
             </div>
         </div>
         <div class="main-dashboard-header-right">
             <div>
-                <label class="tx-13">عدد البنوك</label>
+                <label class="tx-13">{{__('Front-end/dashboard.sections.count')}}</label>
                 <h5>{{\App\Models\Section::count()}}</h5>
             </div>
             <div>
-                <label class="tx-13">عدد المنتجات</label>
+                <label class="tx-13">{{__('Front-end/dashboard.products.count')}}</label>
                 <h5>{{\App\Models\Product::count()}}</h5>
             </div>
         </div>
@@ -39,13 +38,13 @@
                 <div class="card overflow-hidden sales-card bg-primary-gradient">
                     <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">اجمالي الفواتير</h6>
+                            <h6 class="mb-3 tx-12 text-white">{{__('Front-end/dashboard.total.invoices')}}</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
                                     <h4 class="tx-20 font-weight-bold mb-1 text-white">{{'$' . number_format(\App\Models\Invoice::sum('total'),2)}}</h4>
-                                    <p class="mb-0 tx-12 text-white op-7">{{ 'العدد: ' . \App\Models\Invoice::count()}}</p>
+                                    <p class="mb-0 tx-12 text-white op-7">{{ __('Front-end/dashboard.invoices.count') . \App\Models\Invoice::count()}}</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
@@ -63,13 +62,13 @@
                 <div class="card overflow-hidden sales-card bg-success-gradient">
                     <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">الفواتير المدفوعة</h6>
+                            <h6 class="mb-3 tx-12 text-white">{{__('Front-end/dashboard.paid.invoices')}}</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
                                     <h4 class="tx-20 font-weight-bold mb-1 text-white">{{'$' . number_format(\App\Models\Invoice::where('value_status',3)->sum('total'),2)}}</h4>
-                                    <p class="mb-0 tx-12 text-white op-7">{{ 'العدد: ' . \App\Models\Invoice::where('value_status',3)->count()}}</p>
+                                    <p class="mb-0 tx-12 text-white op-7">{{ __('Front-end/dashboard.invoices.count') . \App\Models\Invoice::where('value_status',3)->count()}}</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
@@ -89,13 +88,13 @@
                 <div class="card overflow-hidden sales-card bg-danger-gradient">
                     <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">الفواتير الغير مدفوعة</h6>
+                            <h6 class="mb-3 tx-12 text-white">{{__('Front-end/dashboard.unpaid.invoices')}}</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
                                     <h4 class="tx-20 font-weight-bold mb-1 text-white">{{'$' . number_format(\App\Models\Invoice::where('value_status',1)->sum('total'),2)}}</h4>
-                                    <p class="mb-0 tx-12 text-white op-7">{{ 'العدد: ' . \App\Models\Invoice::where('value_status',1)->count()}}</p>
+                                    <p class="mb-0 tx-12 text-white op-7">{{ __('Front-end/dashboard.invoices.count') . \App\Models\Invoice::where('value_status',1)->count()}}</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-down text-white"></i>
@@ -114,13 +113,13 @@
                 <div class="card overflow-hidden sales-card bg-warning-gradient">
                     <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
                         <div class="">
-                            <h6 class="mb-3 tx-12 text-white">الفواتير المدفوعة جزئيا</h6>
+                            <h6 class="mb-3 tx-12 text-white">{{__('Front-end/dashboard.partially.paid.invoices')}}</h6>
                         </div>
                         <div class="pb-0 mt-0">
                             <div class="d-flex">
                                 <div class="">
                                     <h4 class="tx-20 font-weight-bold mb-1 text-white">{{'$' . number_format(\App\Models\Invoice::where('value_status',2)->sum('total'),2)}}</h4>
-                                    <p class="mb-0 tx-12 text-white op-7">{{ 'العدد: ' . \App\Models\Invoice::where('value_status',2)->count()}}</p>
+                                    <p class="mb-0 tx-12 text-white op-7">{{ __('Front-end/dashboard.invoices.count') . \App\Models\Invoice::where('value_status',2)->count()}}</p>
                                 </div>
                                 <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-down text-white"></i>
@@ -144,10 +143,10 @@
                 <div class="card">
                     <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
                         <div class="d-flex justify-content-between">
-                            <h4 class="card-title mb-0">الرسم البياني لنسبة الفواتير</h4>
+                            <h4 class="card-title mb-0">{{__('Front-end/dashboard.bar.chart.title')}}</h4>
                             <i class="mdi mdi-dots-horizontal text-gray"></i>
                         </div>
-                        <p class="tx-12 text-muted mb-0">نسبة الفواتير المدفوعة و الغير مدفوعة و المدفوعة جزئيا</p>
+                        <p class="tx-12 text-muted mb-0">{{__('Front-end/dashboard.bar.chart.description')}}</p>
                     </div>
                     <div class="card-body">
                         <div style="width:75%;">
@@ -158,8 +157,8 @@
             </div>
             <div class="col-lg-12 col-xl-5">
                 <div class="card card-dashboard-map-one">
-                    <label class="main-content-label">مخطط دائري لنسبة الفواتير</label>
-                    <span class="d-block mg-b-20 text-muted tx-12">مخطط دائري للفواتير المدفوعة و الغير مدفوعة و المدفوعة جزئيا</span>
+                    <label class="main-content-label">{{__('Front-end/dashboard.pie.chart.title')}}</label>
+                    <span class="d-block mg-b-20 text-muted tx-12">{{__('Front-end/dashboard.pie.chart.description')}}</span>
                     <div class="">
                         {!! $pieChart->render() !!}
                     </div>
@@ -176,10 +175,10 @@
                 <div class="card">
                     <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
                         <div class="d-flex justify-content-between">
-                            <h4 class="card-title mb-0">مخطط لمستخدمين النظام</h4>
+                            <h4 class="card-title mb-0">{{__('Front-end/dashboard.doughnut.chart.title')}}</h4>
                             <i class="mdi mdi-dots-horizontal text-gray"></i>
                         </div>
-                        <p class="tx-12 text-muted mb-0">مخطط يوضح نسبة المستخدمين الفعالين والمستخدمين الغير فعالين</p>
+                        <p class="tx-12 text-muted mb-0">{{__('Front-end/dashboard.doughnut.chart.description')}}</p>
                     </div>
                     {!! $doughnutChart->render() !!}
                 </div>
@@ -188,8 +187,8 @@
         @can('invoices-list')
             <div class="col-lg-12 col-xl-5">
                 <div class="card card-dashboard-map-one">
-                    <label class="main-content-label">الفواتير المضافة خلال الشهور</label>
-                    <span class="d-block mg-b-20 text-muted tx-12">مخطط يوضح الفواتير المضافة خلال شهور السنة حيث يظهر عدد الفواتبر المدفوعة والغير مدفوعة والمدفوعة جزئيا المضافة خلال كل شهر</span>
+                    <label class="main-content-label">{{__('Front-end/dashboard.line.chart.title')}}</label>
+                    <span class="d-block mg-b-20 text-muted tx-12">{{__('Front-end/dashboard.line.chart.description')}}</span>
                     <div class="">
                         {!! $lineChart->render() !!}
                     </div>
