@@ -192,14 +192,14 @@
 											</div>
 										</div>
 									</div>
-									<a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>الملف الشخصي</a>
-									<a class="dropdown-item" href=""><i class="bx bx-cog"></i> تعديل الملف الشخصي</a>
-									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>صندوق الوارد</a>
-									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>الرسائل</a>
-									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> اعدادات الحساب</a>
+									<a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>{{__('Front-end/header.profile.show')}}</a>
+									<a class="dropdown-item" href=""><i class="bx bx-cog"></i>{{__('Front-end/header.profile.edit')}}</a>
+									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>{{__('Front-end/header.mail.show')}}</a>
+									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>{{__('Front-end/header.messages.show')}}</a>
+									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i>{{__('Front-end/header.profile.settings')}}</a>
                                     <form method="post" action="{{route('logout')}}">
                                         @csrf
-									<button type="submit" class="dropdown-item" ><i class="bx bx-log-out"></i> تسجيل الخروج</button>
+									<button type="submit" class="dropdown-item" ><i class="bx bx-log-out"></i>{{__('Front-end/header.profile.logout')}}</button>
                                     </form>
 								</div>
 							</div>
