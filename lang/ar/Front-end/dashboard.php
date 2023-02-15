@@ -1,7 +1,7 @@
 <?php
 return [
     'dashboard'=>'لوحة التحكم',
-    'welcome.back'=>'مرحبا بعودك يا',
+    'welcome.back'=>'مرحبا بعودتك يا ',
     'dashboard.info'=>'لوحة التحكم بنظام الفواتير',
     'total.invoices'=>'اجمالي الفواتير',
     'paid.invoices'=>'الفواتير المدفوعة',
