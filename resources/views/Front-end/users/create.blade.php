@@ -13,7 +13,7 @@
     <!--Internal  TelephoneInput css-->
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
     @section('title')
-        اضافة مستخدم
+        {{__('Front-end/users.add.user')}}
     @stop
 
 
@@ -23,8 +23,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">المستخدمين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ اضافة
-                مستخدم</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Front-end/users.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Front-end/users.add.user')}}</span>
             </div>
         </div>
     </div>
@@ -60,13 +59,13 @@
 
                             <div class="row mg-b-20">
                                 <div class="parsley-input col-md-6" id="fnWrapper">
-                                    <label>اسم المستخدم: <span class="tx-danger">*</span></label>
+                                    <label>{{__('Front-end/users.user.name')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control form-control-sm mg-b-20"
                                            data-parsley-class-handler="#lnWrapper" name="name" required="" type="text">
                                 </div>
 
                                 <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                                    <label>البريد الالكتروني: <span class="tx-danger">*</span></label>
+                                    <label>{{__('Front-end/users.email')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control form-control-sm mg-b-20"
                                            data-parsley-class-handler="#lnWrapper" name="email" required="" type="email">
                                 </div>
@@ -76,13 +75,13 @@
 
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                                <label>كلمة المرور: <span class="tx-danger">*</span></label>
+                                <label>{{__('Front-end/users.password.change')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                        name="password" required="" type="password">
                             </div>
 
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                                <label> تاكيد كلمة المرور: <span class="tx-danger">*</span></label>
+                                <label> {{__('Front-end/users.confirm.new.password')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                        name="confirm-password" required="" type="password">
                             </div>
@@ -90,10 +89,10 @@
 
                         <div class="row row-sm mg-b-20">
                             <div class="col-lg-6">
-                                <label class="form-label">حالة المستخدم</label>
+                                <label class="form-label">{{__('Front-end/users.user.status')}}</label>
                                 <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
-                                    <option selected value="1">مفعل</option>
-                                    <option value="0">غير مفعل</option>
+                                    <option selected value="1">{{__('Front-end/users.active')}}</option>
+                                    <option value="0">{{__('Front-end/users.inactive')}}</option>
                                 </select>
                             </div>
                         </div>
@@ -101,7 +100,7 @@
                         <div class="row mg-b-20">
                             <div class="col-xs-12 col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label"> صلاحية المستخدم</label>
+                                    <label class="form-label"> {{__('Front-end/users.user.role')}}</label>
                                     <select class="form-control" name="roles_name[]" multiple>
                                         @foreach($roles as $role)
                                         <option value="{{$role->name}}">{{$role->name}}</option>
@@ -110,7 +109,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h5 class="card-title">الصورة الشخصية</h5>
+                        <h5 class="card-title">{{__('Front-end/users.profile.pic')}}</h5>
 
                         <div class="col-sm-12 col-md-12">
                             <input type="file" name="pic" class="dropify" accept=".jpg, .png, image/jpeg, image/png"
@@ -118,7 +117,7 @@
                         </div><br>
 
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button class="btn btn-main-primary pd-x-20" type="submit">تاكيد</button>
+                            <button class="btn btn-main-primary pd-x-20" type="submit">{{__('Front-end/users.save.data')}}</button>
                         </div>
                     </form>
                 </div>

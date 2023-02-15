@@ -3,7 +3,7 @@
     <!--Internal   Notify -->
     <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
     @section('title')
-        صلاحيات المستخدمين
+        {{__('Front-end/users.users.permissions')}}
     @stop
 
 
@@ -13,8 +13,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">المستخدمين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
-                صلاحيات المستخدمين</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Front-end/users.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
+                {{__('Front-end/users.users.permissions')}}</span>
             </div>
         </div>
     </div>
@@ -53,7 +53,7 @@
                         <div class="col-lg-12 margin-tb">
                             <div class="pull-right">
                                 @can('add-permission')
-                                    <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">اضافة</a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">{{__('Front-end/users.add.user.role')}}</a>
                                 @endcan
                             </div>
                         </div>
@@ -67,8 +67,8 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>الاسم</th>
-                                <th>العمليات</th>
+                                <th>{{__('Front-end/users.permission.name')}}</th>
+                                <th>{{__('Front-end/users.settings.btn')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -79,18 +79,18 @@
                                     <td>
                                         @can('display-permission')
                                             <a class="btn btn-success btn-sm"
-                                               href="{{ route('roles.show', $role->id) }}">عرض</a>
+                                               href="{{ route('roles.show', $role->id) }}">{{__('Front-end/users.display')}}</a>
                                         @endcan
 
                                             @if ($role->name !== 'super admin')
                                         @can('edit-permission')
                                             <a class="btn btn-primary btn-sm"
-                                               href="{{ route('roles.edit', $role->id) }}">تعديل</a>
+                                               href="{{ route('roles.edit', $role->id) }}">{{__('Front-end/users.edit')}}</a>
                                         @endcan
                                             @can('delete-permission')
                                                     <a class="btn btn-danger btn-sm" data-effect="effect-scale"
                                                        data-id="{{ $role->id }}"
-                                                       data-toggle="modal" href="#modaldemo5" title="حذف">حذف</a>
+                                                       data-toggle="modal" href="#modaldemo5" title="{{__('Front-end/users.delete')}}">{{__('Front-end/users.delete')}}</a>
                                             @endcan
                                         @endif
 
@@ -111,13 +111,13 @@
             <div class="modal-content tx-size-sm">
                 <div class="modal-body tx-center pd-y-20 pd-x-20">
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button> <i class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                    <h4 class="tx-danger mg-b-20">هل انت متأكد من حذف هذه الصلاحية</h4>
-                    <p class="mg-b-20 mg-x-20">بمجرد حذفك لهذه الصلاحية لن تتمكن من الرجوع عن الحذف</p>
+                    <h4 class="tx-danger mg-b-20">{{__('Front-end/users.delete.role.confirm.message')}}</h4>
+                    <p class="mg-b-20 mg-x-20">{{__('Front-end/users.delete.role.confirm.warning')}}</p>
                     <form action="roles/destroy'" method="post" autocomplete="off">
                         @csrf
                         @method('delete')
                         <input type="hidden" name="id" id="id" value="">
-                        <button type="submit" class="btn ripple btn-danger pd-x-25">حذف</button>
+                        <button type="submit" class="btn ripple btn-danger pd-x-25">{{__('Front-end/users.delete')}}</button>
                     </form>
                 </div>
             </div>

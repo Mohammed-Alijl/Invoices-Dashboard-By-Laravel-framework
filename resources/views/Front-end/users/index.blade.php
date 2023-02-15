@@ -2,7 +2,7 @@
 @section('css')
 
     @section('title')
-        قائمة المستخدمين
+        {{__('Front-end/users.users.list')}}
     @stop
 
     <!-- Internal Data table css -->
@@ -21,8 +21,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">المستخدمين</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
-                المستخدمين</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Front-end/users.users')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Front-end/users.users.list')}}</span>
             </div>
         </div>
     </div>
@@ -59,7 +58,7 @@
                 <div class="card-header pb-0">
                     <div class="col-sm-1 col-md-2">
                         @can('add-user')
-                            <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">اضافة مستخدم</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">{{__('Front-end/users.add.user')}}</a>
                         @endcan
                     </div>
                 </div>
@@ -69,11 +68,11 @@
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">اسم المستخدم</th>
-                                <th class="wd-20p border-bottom-0">البريد الالكتروني</th>
-                                <th class="wd-15p border-bottom-0">حالة المستخدم</th>
-                                <th class="wd-15p border-bottom-0">نوع المستخدم</th>
-                                <th class="wd-10p border-bottom-0">العمليات</th>
+                                <th class="wd-15p border-bottom-0">{{__('Front-end/users.user.name')}}</th>
+                                <th class="wd-20p border-bottom-0">{{__('Front-end/users.email')}}</th>
+                                <th class="wd-15p border-bottom-0">{{__('Front-end/users.user.status')}}</th>
+                                <th class="wd-15p border-bottom-0">{{__('Front-end/users.user.role')}}</th>
+                                <th class="wd-10p border-bottom-0">{{__('Front-end/users.settings.btn')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -85,11 +84,11 @@
                                     <td>
                                         @if ($user->status == 1)
                                             <span class="label text-success d-flex">
-                                                <div class="dot-label bg-success ml-1"></div>مفعل
+                                                <div class="dot-label bg-success ml-1"></div>{{__('Front-end/users.active')}}
                                             </span>
                                         @else
                                             <span class="label text-danger d-flex">
-                                                <div class="dot-label bg-danger ml-1"></div>غير مفعل
+                                                <div class="dot-label bg-danger ml-1"></div>{{__('Front-end/users.inactive')}}
                                             </span>
                                         @endif
                                     </td>
@@ -107,13 +106,13 @@
                                         @if(!in_array('super admin',$user->getRoleNames()->toArray()))
                                         @can('edit-user')
                                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
-                                               title="تعديل"><i class="las la-pen"></i></a>
+                                               title="{{__('Front-end/users.edit')}}"><i class="las la-pen"></i></a>
                                         @endcan
 
                                         @can('delete-user')
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                               data-toggle="modal" href="#modaldemo8" title="حذف"><i
+                                               data-toggle="modal" href="#modaldemo8" title="{{__('Front-end/users.delete')}}"><i
                                                     class="las la-trash"></i></a>
                                         @endcan
                                         @endif
@@ -133,20 +132,20 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">حذف المستخدم</h6><button aria-label="Close" class="close"
+                        <h6 class="modal-title">{{__('Front-end/users.delete.user')}}</h6><button aria-label="Close" class="close"
                                                                          data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <form action="users/destroy" method="post">
                         @csrf
                         @method('delete')
                         <div class="modal-body">
-                            <p>هل انت متاكد من عملية الحذف ؟</p><br>
+                            <p>{{__('Front-end/users.delete.user.confirm.message')}}</p><br>
                             <input type="hidden" name="id" id="user_id" value="">
                             <input class="form-control" name="username" id="username" type="text" readonly>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                            <button type="submit" class="btn btn-danger">تاكيد</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Front-end/users.cancel')}}</button>
+                            <button type="submit" class="btn btn-danger">{{__('Front-end/users.delete')}}</button>
                         </div>
                 </div>
                 </form>
