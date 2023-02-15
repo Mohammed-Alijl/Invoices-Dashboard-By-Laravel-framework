@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    لوحة التحكم
+    {{__('Front-end/dashboard.dashboard')}}
 @stop
 @section('css')
     <!--  Owl-carousel css-->

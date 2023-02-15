@@ -1,5 +1,6 @@
 <?php
 return [
+    'dashboard'=>'Dashboard',
     'welcome.back'=>'Welcome Back, ',
     'dashboard.info'=>'Dashboard For Invoices System',
     'total.invoices'=>'Total Invoices',

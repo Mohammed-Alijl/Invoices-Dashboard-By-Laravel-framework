@@ -1,5 +1,6 @@
 <?php
 return [
+    'dashboard'=>'لوحة التحكم',
     'welcome.back'=>'مرحبا بعودك يا',
     'dashboard.info'=>'لوحة التحكم بنظام الفواتير',
     'total.invoices'=>'اجمالي الفواتير',
