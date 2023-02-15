@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    قائمة الفاوتير المحذوفة
+    {{__('Front-end/invoices.invoices.archive')}}
 @endsection
 @section('css')
     <!-- Internal Data table css -->
@@ -16,7 +16,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة الفواتير المحذوفة</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Front-end/invoices.invoices')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Front-end/invoices.invoices.archive')}}</span>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">قائمة الفواتير المحذوفة</h4>
+                        <h4 class="card-title mg-b-0">{{__('Front-end/invoices.invoices.archive')}}</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
                     <p class="tx-12 tx-gray-500 mb-2">
@@ -64,18 +64,18 @@
                             <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>
-                                <th class="border-bottom-0">رقم الفاتورة</th>
-                                <th class="border-bottom-0">تاريخ الفاتورة</th>
-                                <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                <th class="border-bottom-0">المنتج</th>
-                                <th class="border-bottom-0">القسم</th>
-                                <th class="border-bottom-0">الخصم</th>
-                                <th class="border-bottom-0">نسبة الضريبة</th>
-                                <th class="border-bottom-0">قيمة الضريبة</th>
-                                <th class="border-bottom-0">الاجمالي</th>
-                                <th class="border-bottom-0">الحالات</th>
-                                <th class="border-bottom-0">العمليات</th>
-                                <th class="border-bottom-0">الملاحظات</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.invoice.number')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.invoice.date')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.due.date')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.product')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.section')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.discount')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.rate.vat')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.value.vat')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.total')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.status')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.settings')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/invoices.note')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -96,13 +96,13 @@
                                     <td>
                                         @switch($invoice->value_status)
                                             @case(3)
-                                                <span class="text-success">مدفوعة</span>
+                                                <span class="text-success">{{__('Front-end/invoices.status.paid')}}</span>
                                                 @break
                                             @case(2)
-                                                <span class="text-warning">مدفوعة جزئيا</span>
+                                                <span class="text-warning">{{__('Front-end/invoices.status.partially.paid')}}</span>
                                                 @break
                                             @default
-                                                <span class="text-danger">غير مدفوعة</span>
+                                                <span class="text-danger">{{__('Front-end/invoices.status.unpaid')}}</span>
                                                 @break
                                         @endswitch
                                     </td>
@@ -111,18 +111,18 @@
                                         <div class="dropdown">
                                             <button aria-expanded="false" aria-haspopup="true"
                                                     class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
-                                                    type="button">العمليات<i class="fas fa-caret-down ml-1"></i>
+                                                    type="button">{{__('Front-end/invoices.settings')}}<i class="fas fa-caret-down ml-1"></i>
                                             </button>
                                             <div class="dropdown-menu tx-13">
                                                 @can('recover-invoice')
                                                 <a class="dropdown-item"
-                                                   href=" {{route('invoices.recovery',$invoice->id) }}">استعادة الفاتورة</a>
+                                                   href=" {{route('invoices.recovery',$invoice->id) }}">{{__('Front-end/invoices.invoice.recovery')}}</a>
                                                 @endcan
                                                 @can('delete-invoice')
                                                 <a class="dropdown-item" href="#" data-id="{{ $invoice->id }}"
                                                    data-toggle="modal" data-effect="effect-scale"
                                                    data-target="#modaldemo5"><i
-                                                        class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة نهائيا</a>
+                                                        class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;{{__('Front-end/invoices.invoice.delete')}}</a>
                                                     @endcan
                                             </div>
                                         </div>
@@ -146,12 +146,12 @@
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span
                             aria-hidden="true">&times;</span></button>
                     <i class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                    <h4 class="tx-danger mg-b-20">هل انت متأكد من حذف هذه الفاتورة نهائيا</h4>
+                    <h4 class="tx-danger mg-b-20">{{__('Front-end/invoices.delete.invoice.confirm.message')}}</h4>
                     <form action="../invoices/destroy" method="post" autocomplete="off" id="delete_form">
                         @csrf
                         @method('delete')
                         <input type="hidden" name="id" id="id" value="">
-                        <button type="submit" class="btn ripple btn-danger pd-x-25">حذف</button>
+                        <button type="submit" class="btn ripple btn-danger pd-x-25">{{__('Front-end/invoices.invoice.delete')}}</button>
                     </form>
                 </div>
             </div>

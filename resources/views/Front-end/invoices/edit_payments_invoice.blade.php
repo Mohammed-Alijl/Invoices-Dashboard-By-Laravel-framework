@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
 @endsection
 @section('title')
-    تعديل الفاتورة
+    {{__('Front-end/invoices.invoice.change.payment.status')}}
 @stop
 
 @section('page-header')
@@ -20,8 +20,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                    تعديل الفاتورة</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Front-end/invoices.invoices')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                    {{__('Front-end/invoices.invoice.change.payment.status')}}</span>
             </div>
         </div>
     </div>
@@ -64,19 +64,19 @@
                         @method('put')
                         <div class="row">
                             <div class="col">
-                                <label for="inputName" class="control-label">رقم الفاتورة</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/invoices.invoice.number')}}</label>
                                 <input type="text" class="form-control" id="inputName" value="{{$invoice->invoice_number}}"
-                                       title="رقم الفاتورة" readonly>
+                                       title="{{__('Front-end/invoices.invoice.number')}}" readonly>
                             </div>
 
                             <div class="col">
-                                <label>تاريخ الفاتورة</label>
+                                <label>{{__('Front-end/invoices.invoice.date')}}</label>
                                 <input class="form-control fc-datepicker" name="invoice_date" placeholder="YYYY-MM-DD"
                                        type="text" value="{{ $invoice->invoice_Date }}" readonly>
                             </div>
 
                             <div class="col">
-                                <label>تاريخ الاستحقاق</label>
+                                <label>{{__('Front-end/invoices.due.date')}}</label>
                                 <input class="form-control fc-datepicker" name="due_date" placeholder="YYYY-MM-DD"
                                        type="text" value="{{$invoice->due_date}}" readonly>
                             </div>
@@ -85,8 +85,8 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="inputName" class="control-label">القسم</label>
-                                <select name="Section" class="form-control SlectBox" onclick="console.log($(this).val())"
+                                <label for="inputName" class="control-label">{{__('Front-end/invoices.section')}}   </label>
+                                <select name="Section" class="form-control" onclick="console.log($(this).val())"
                                         onchange="console.log('change is firing')" readonly>
                                     <!--placeholder-->
                                     <option value=" {{ $invoice->section->id }}">
@@ -97,14 +97,14 @@
                             </div>
 
                             <div class="col">
-                                <label for="inputName" class="control-label">المنتج</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/invoices.product')}}</label>
                                 <select id="product" name="product_id" class="form-control" readonly>
                                     <option value="{{$invoice->product->id}}" selected>{{$invoice->product->name}}</option>
                                 </select>
                             </div>
 
                             <div class="col">
-                                <label for="inputName" class="control-label">مبلغ التحصيل</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/invoices.collection.amount')}}</label>
                                 <input type="text" class="form-control" id="inputName" name="amount_collection"
                                        value="{{$invoice->amount_collection}}" readonly
                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
@@ -117,16 +117,16 @@
                         <div class="row">
 
                             <div class="col">
-                                <label for="inputName" class="control-label">مبلغ العمولة</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/invoices.commission.amount')}}</label>
                                 <input type="text" class="form-control form-control-lg" id="Amount_Commission"
-                                       name="amount_commission" title="يرجي ادخال مبلغ العمولة "
+                                       name="amount_commission" title="{{__('Front-end/invoices.commission.amount')}}"
                                        value="{{$invoice->amount_commission}}" readonly
                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                        required>
                             </div>
 
                             <div class="col">
-                                <label for="inputName" class="control-label">الخصم</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/invoices.discount')}}</label>
                                 <input type="text" class="form-control form-control-lg" id="Discount" name="discount"
                                        title="مبلغ الخصم" value="{{$invoice->discount}}"
                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="col">
-                                <label for="inputName" class="control-label">نسبة ضريبة القيمة المضافة</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/invoices.vat.rate')}}</label>
                                 <select name="rate_vat" id="Rate_VAT" class="form-control" onchange="myFunction()" readonly>
                                     <!--placeholder-->
                                     @if($invoice->rate_vat === '5%')
@@ -153,12 +153,12 @@
 
                         <div class="row">
                             <div class="col">
-                                <label for="inputName" class="control-label">الاجمالي شامل الضريبة</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/invoices.total.include.vat')}}</label>
                                 <input type="text" class="form-control" id="Total" name="total"
                                        readonly value="{{$invoice->total}}">
                             </div>
                             <div class="col">
-                                <label for="inputName" class="control-label">المبلغ المتبقي</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/invoices.remaining.amount')}}</label>
                                 <input type="text" class="form-control" id="Value_VAT" name="value_vat"
                                        readonly value="{{$invoice->remaining_amount}}">
                             </div>
@@ -169,7 +169,7 @@
                         {{-- 5 --}}
                         <div class="row">
                             <div class="col">
-                                <label for="exampleTextarea">ملاحظات</label>
+                                <label for="exampleTextarea">{{__('Front-end/invoices.note')}}</label>
                                 <textarea class="form-control" id="exampleTextarea" rows="3" readonly>
                                     {{$invoice->note}}
                                 </textarea>
@@ -177,12 +177,12 @@
                         </div><br>
                         <div class="row">
                             <div class="col">
-                                <label for="exampleTextarea">المبلغ المدفوع</label>
-                                <input type="text" class="form-control" id="inputName" title="المبلغ المدفوع" name="collection_amount">
+                                <label for="exampleTextarea">{{__('Front-end/invoices.paid.amount')}}</label>
+                                <input type="text" class="form-control" id="inputName" title="{{__('Front-end/invoices.paid.amount')}}" name="collection_amount">
                             </div>
 
                             <div class="col">
-                                <label>ملاحظات الدفع</label>
+                                <label>{{__('Front-end/invoices.paid.notes')}}</label>
                                 <input class="form-control" name="note" type="text" >
                             </div>
 
@@ -190,7 +190,7 @@
                         </div><br>
 
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">تحديث حالة الدفع</button>
+                            <button type="submit" class="btn btn-primary">{{__('Front-end/invoices.invoice.change.payment.status')}}</button>
                         </div>
 
 

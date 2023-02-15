@@ -10,15 +10,15 @@
     </style>
 @endsection
 @section('title')
-    معاينه طباعة الفاتورة
+    {{__('Front-end/invoices.invoice.print.show')}}
 @stop
 @section('page-header')
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                    معاينة طباعة الفاتورة</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Front-end/invoices.invoices')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                    {{__('Front-end/invoices.invoice.print.show')}}</span>
             </div>
         </div>
 
@@ -55,20 +55,20 @@
                 <div class="card card-invoice">
                     <div class="card-body">
                         <div class="invoice-header">
-                            <h1 class="invoice-title">فاتورة تحصيل</h1>
+                            <h1 class="invoice-title">{{__('Front-end/invoices.invoice.collection')}}</h1>
 
                         </div><!-- invoice-header -->
                         <div class="row mg-t-20">
 
                             <div class="col-md">
-                                <label class="tx-gray-600">معلومات الفاتورة</label>
-                                <p class="invoice-info-row"><span>رقم الفاتورة</span>
+                                <label class="tx-gray-600">{{__('Front-end/invoices.invoice.info')}}</label>
+                                <p class="invoice-info-row"><span>{{__('Front-end/invoices.invoice.number')}}</span>
                                     <span>{{ $invoice->invoice_number }}</span></p>
-                                <p class="invoice-info-row"><span>تاريخ الاصدار</span>
+                                <p class="invoice-info-row"><span>{{__('Front-end/invoices.release.date')}}</span>
                                     <span>{{ $invoice->invoice_Date }}</span></p>
-                                <p class="invoice-info-row"><span>تاريخ الاستحقاق</span>
+                                <p class="invoice-info-row"><span>{{__('Front-end/invoices.due.date')}}</span>
                                     <span>{{ $invoice->due_date }}</span></p>
-                                <p class="invoice-info-row"><span>القسم</span>
+                                <p class="invoice-info-row"><span>{{__('Front-end/invoices.section')}}</span>
                                     <span>{{ $invoice->section->name }}</span></p>
                             </div>
                         </div>
@@ -77,10 +77,10 @@
                                 <thead>
                                 <tr>
                                     <th class="wd-20p">#</th>
-                                    <th class="wd-40p">المنتج</th>
-                                    <th class="tx-center">مبلغ التحصيل</th>
-                                    <th class="tx-right">مبلغ العمولة</th>
-                                    <th class="tx-right">الاجمالي</th>
+                                    <th class="wd-40p">{{__('Front-end/invoices.product')}}</th>
+                                    <th class="tx-center">{{__('Front-end/invoices.collection.amount')}}</th>
+                                    <th class="tx-right">{{__('Front-end/invoices.commission.amount')}}</th>
+                                    <th class="tx-right">{{__('Front-end/invoices.total')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -102,20 +102,20 @@
 
                                         </div><!-- invoice-notes -->
                                     </td>
-                                    <td class="tx-right">الاجمالي</td>
+                                    <td class="tx-right">{{__('Front-end/invoices.total')}}</td>
                                     <td class="tx-right" colspan="2"> {{ number_format($total, 2) }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tx-right">نسبة الضريبة ({{ $invoice->rate_vat }})</td>
+                                    <td class="tx-right">{{__('Front-end/invoices.rate.vat')}} ({{ $invoice->rate_vat }})</td>
                                     <td class="tx-right" colspan="2">{{$invoice->value_vat}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tx-right">قيمة الخصم</td>
+                                    <td class="tx-right">{{__('Front-end/invoices.discount')}}</td>
                                     <td class="tx-right" colspan="2"> {{ number_format($invoice->discount, 2) }}</td>
 
                                 </tr>
                                 <tr>
-                                    <td class="tx-right tx-uppercase tx-bold tx-inverse">الاجمالي شامل الضريبة</td>
+                                    <td class="tx-right tx-uppercase tx-bold tx-inverse">{{__('Front-end/invoices.total.include.vat')}}</td>
                                     <td class="tx-right" colspan="2">
                                         <h4 class="tx-primary tx-bold">{{ number_format($invoice->total, 2) }}</h4>
                                     </td>
@@ -128,7 +128,7 @@
 
 
                         <button class="btn btn-danger  float-left mt-3 mr-2" id="print_Button" > <i
-                                class="mdi mdi-printer ml-1"></i>طباعة</button>
+                                class="mdi mdi-printer ml-1"></i> {{__('Front-end/invoices.invoice.print')}}</button>
                     </div>
                 </div>
             </div>
