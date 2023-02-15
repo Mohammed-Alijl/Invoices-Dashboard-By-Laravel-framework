@@ -15,7 +15,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
     @section('title')
-        تقرير العملاء
+        {{__('Front-end/reports.customers.reports')}}
     @stop
 @endsection
 @section('page-header')
@@ -23,8 +23,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">التقارير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تقرير
-                العملاء</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Front-end/reports.reports')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Front-end/reports.customers.reports')}}</span>
             </div>
         </div>
     </div>
@@ -61,11 +60,11 @@
                         <div class="row">
 
                             <div class="col">
-                                <label for="inputName" class="control-label">القسم</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/reports.section')}}</label>
                                 <select name="section_id" class="form-control select2" onclick="console.log($(this).val())"
                                         onchange="console.log('change is firing')">
                                     <!--placeholder-->
-                                    <option value="" selected disabled>حدد القسم</option>
+                                    <option value="" selected disabled>{{__('Front-end/reports.select.section')}}</option>
                                     @foreach ($sections as $section)
                                         <option value="{{ $section->id }}"> {{ $section->name }}</option>
                                     @endforeach
@@ -73,14 +72,14 @@
                             </div>
 
                             <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                                <label for="inputName" class="control-label">المنتج</label>
+                                <label for="inputName" class="control-label">{{__('Front-end/reports.product')}}</label>
                                 <select id="product" name="product_id" class="form-control select2">
                                 </select>
                             </div>
 
 
                             <div class="col-lg-3" id="start_at">
-                                <label for="exampleFormControlSelect1">من تاريخ</label>
+                                <label for="exampleFormControlSelect1">{{__('Front-end/reports.start.at')}}</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -92,7 +91,7 @@
                             </div>
 
                             <div class="col-lg-3" id="end_at">
-                                <label for="exampleFormControlSelect1">الي تاريخ</label>
+                                <label for="exampleFormControlSelect1">{{__('Front-end/reports.end.at')}}</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -105,8 +104,8 @@
                         </div><br>
 
                         <div class="row">
-                            <div class="col-sm-1 col-md-1">
-                                <button class="btn btn-primary btn-block">بحث</button>
+                            <div class="col-sm-1 col-md-2">
+                                <button class="btn btn-primary btn-block">{{__('Front-end/reports.search')}}</button>
                             </div>
                         </div>
                     </form>
@@ -119,17 +118,17 @@
                                 <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">رقم الفاتورة</th>
-                                    <th class="border-bottom-0">تاريخ القاتورة</th>
-                                    <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                    <th class="border-bottom-0">المنتج</th>
-                                    <th class="border-bottom-0">القسم</th>
-                                    <th class="border-bottom-0">الخصم</th>
-                                    <th class="border-bottom-0">نسبة الضريبة</th>
-                                    <th class="border-bottom-0">قيمة الضريبة</th>
-                                    <th class="border-bottom-0">الاجمالي</th>
-                                    <th class="border-bottom-0">الحالة</th>
-                                    <th class="border-bottom-0">ملاحظات</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.invoice.number')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.invoice.date')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.due.date')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.product')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.section')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.discount')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.rate.vat')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.value.vat')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.total')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.status')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.note')}}</th>
 
                                 </tr>
                                 </thead>
@@ -161,13 +160,13 @@
                                         <td>
                                             @switch($invoice->value_status)
                                                 @case(3)
-                                                    <span class="text-success">مدفوعة</span>
+                                                    <span class="text-success">{{__('Front-end/invoices.status.paid')}}</span>
                                                     @break
                                                 @case(2)
-                                                    <span class="text-warning">مدفوعة جزئيا</span>
+                                                    <span class="text-warning">{{__('Front-end/invoices.status.partially.paid')}}</span>
                                                     @break
                                                 @default
-                                                    <span class="text-danger">غير مدفوعة</span>
+                                                    <span class="text-danger">{{__('Front-end/invoices.status.unpaid')}}</span>
                                                     @break
                                             @endswitch
                                         </td>

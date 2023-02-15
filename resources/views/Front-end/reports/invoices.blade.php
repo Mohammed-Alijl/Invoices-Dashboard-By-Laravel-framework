@@ -15,7 +15,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
     @section('title')
-        تقرير الفواتير
+        {{__('Front-end/reports.invoices.reports')}}
     @stop
 @endsection
 @section('page-header')
@@ -23,8 +23,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">التقارير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تقرير
-                الفواتير</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Front-end/reports.reports')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Front-end/reports.invoices.reports')}}</span>
             </div>
         </div>
     </div>
@@ -60,22 +59,21 @@
 
                         <div class="col-lg-3">
                             <label class="rdiobox">
-                                <input checked name="radio" type="radio" value="1" id="type_div"> <span>بحث بنوع
-                                الفاتورة</span></label>
+                                <input checked name="radio" type="radio" value="1" id="type_div"> <span>{{__('Front-end/reports.search.invoice.type')}}</span></label>
                         </div>
 
 
                         <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                            <label class="rdiobox"><input name="radio" value="2" type="radio"><span>بحث برقم الفاتورة
+                            <label class="rdiobox"><input name="radio" value="2" type="radio"><span>{{__('Front-end/reports.search.invoice.number')}}
                             </span></label>
                         </div><br><br>
 
                         <div class="row">
 
                             <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="type">
-                                <p class="mg-b-10">تحديد نوع الفواتير</p><select class="form-control select2" name="status"
+                                <p class="mg-b-10">{{__('Front-end/reports.select.invoice.type')}}</p><select class="form-control select2" name="status"
                                                                                  required>
-                                    <option value="4" {{!isset($status) || $status== 4 ? 'selected' : ''}}>جميع الفواتير</option>
+                                    <option value="4" {{!isset($status) || $status== 4 ? 'selected' : ''}}>{{__('Front-end/reports.all.invoices')}}</option>
                                     <option value="3" {{isset($status) && $status == 3 ? 'selected' : ''}}>الفواتير المدفوعة</option>
                                     <option value="2" {{isset($status) && $status == 2 ? 'selected' : ''}}>الفواتير المدفوعة جزئيا</option>
                                     <option value="1" {{isset($status) && $status == 1 ? 'selected' : ''}}>الفواتير الغير مدفوعة</option>
@@ -85,13 +83,13 @@
 
 
                             <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="invoice_number">
-                                <p class="mg-b-10">البحث برقم الفاتورة</p>
+                                <p class="mg-b-10">{{__('Front-end/reports.search.invoice.number')}}</p>
                                 <input type="text" class="form-control" id="invoice_number" name="invoice_number">
 
                             </div><!-- col-4 -->
 
                             <div class="col-lg-3" id="start_at">
-                                <label for="exampleFormControlSelect1">من تاريخ</label>
+                                <label for="exampleFormControlSelect1">{{__('Front-end/reports.start.at')}}</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -103,7 +101,7 @@
                             </div>
 
                             <div class="col-lg-3" id="end_at">
-                                <label for="exampleFormControlSelect1">الي تاريخ</label>
+                                <label for="exampleFormControlSelect1">{{__('Front-end/reports.end.at')}}</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -116,8 +114,8 @@
                         </div><br>
 
                         <div class="row">
-                            <div class="col-sm-1 col-md-1">
-                                <button class="btn btn-primary btn-block">بحث</button>
+                            <div class="col-sm-1 col-md-2">
+                                <button class="btn btn-primary btn-block">{{__('Front-end/reports.search')}}</button>
                             </div>
                         </div>
                     </form>
@@ -130,17 +128,17 @@
                                 <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">رقم الفاتورة</th>
-                                    <th class="border-bottom-0">تاريخ القاتورة</th>
-                                    <th class="border-bottom-0">تاريخ الاستحقاق</th>
-                                    <th class="border-bottom-0">المنتج</th>
-                                    <th class="border-bottom-0">القسم</th>
-                                    <th class="border-bottom-0">الخصم</th>
-                                    <th class="border-bottom-0">نسبة الضريبة</th>
-                                    <th class="border-bottom-0">قيمة الضريبة</th>
-                                    <th class="border-bottom-0">الاجمالي</th>
-                                    <th class="border-bottom-0">الحالة</th>
-                                    <th class="border-bottom-0">ملاحظات</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.invoice.number')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.invoice.date')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.due.date')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.product')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.section')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.discount')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.rate.vat')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.value.vat')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.total')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.status')}}</th>
+                                    <th class="border-bottom-0">{{__('Front-end/invoices.note')}}</th>
 
                                 </tr>
                                 </thead>
@@ -166,13 +164,13 @@
                                         <td>
                                             @switch($invoice->value_status)
                                                 @case(3)
-                                                    <span class="text-success">مدفوعة</span>
+                                                    <span class="text-success">{{__('Front-end/invoices.status.paid')}}</span>
                                                     @break
                                                 @case(2)
-                                                    <span class="text-warning">مدفوعة جزئيا</span>
+                                                    <span class="text-warning">{{__('Front-end/invoices.status.partially.paid')}}</span>
                                                     @break
                                                 @default
-                                                    <span class="text-danger">غير مدفوعة</span>
+                                                    <span class="text-danger">{{__('Front-end/invoices.status.unpaid')}}</span>
                                                     @break
                                             @endswitch
                                         </td>
