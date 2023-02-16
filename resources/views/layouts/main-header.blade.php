@@ -144,10 +144,10 @@
 								<div class="dropdown-menu">
 									<div class="menu-header-content bg-primary text-right">
 										<div class="d-flex">
-											<h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">الاشعارات</h6>
-											<a href="{{route('notification.mark.all')}}" class="badge badge-pill badge-warning mr-auto my-auto float-left">تحديد الكل كمقروء</a>
+											<h6 class="dropdown-title mb-1 tx-15 text-white font-weight-semibold">{{__('Front-end/header.notifications')}}</h6>
+											<a href="{{route('notification.mark.all')}}" class="badge badge-pill badge-warning mr-auto my-auto float-left">{{__('Front-end/header.notifications.read.all')}}</a>
 										</div>
-										<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">عدد الاشعارات الغير مقروءة: <span id="notification-count">{{auth()->user()->unreadNotifications->count()}}</span></p>
+										<p class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 ">{{__('Front-end/header.count.unread.notifications')}}<span id="notification-count">{{auth()->user()->unreadNotifications->count()}}</span></p>
 									</div>
 									<div class="main-notification-list Notification-scroll" id="notifications-container">
                                         @if(auth()->user()->unreadNotifications->count() < 1)
@@ -155,7 +155,7 @@
                                                 <div class=" text-center">
                                                     <div class="card-body">
                                                         <img src="{{URL::asset('assets/img/svgicons/note_taking.svg')}}" alt="" class="wd-35p">
-                                                        <h5 class="mg-b-10 mg-t-15 tx-18">يبدو انه ليس لديك اي اشعارات</h5>
+                                                        <h5 class="mg-b-10 mg-t-15 tx-18">{{__('Front-end/header.no.notifications')}}</h5>
                                                     </div>
                                                 </div>
                                             </div>

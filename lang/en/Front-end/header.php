@@ -8,4 +8,8 @@ return [
     'profile.logout' => 'Logout',
     'mail.show' => 'Inbox',
     'messages.show' => 'Messages',
+    'notifications'=>'notifications',
+    'notifications.read.all'=>'Read All',
+    'count.unread.notifications'=>'count unread notifications: ',
+    'no.notifications'=>'There are no notifications for you',
 ];
