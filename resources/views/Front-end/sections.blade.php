@@ -108,26 +108,26 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">تعديل القسم</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                    <h6 class="modal-title">{{__('Front-end/banks.edit.bank')}}</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <h6>تعديل القسم</h6>
+                    <h6>{{__('Front-end/banks.edit.bank')}}</h6>
                     <form action="sections/update" method="post">
                         @csrf
                         @method('patch')
                         <div class="form-group">
                             <input type="hidden" name="id" id="id" value="">
-                            <label for="recipient-name" class="col-form-label">اسم القسم</label>
+                            <label for="recipient-name" class="col-form-label">{{__('Front-end/banks.bank.name')}}</label>
                             <input class="form-control" name="name" id="section_name" type="text">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">الوصف</label>
+                            <label for="message-text" class="col-form-label">{{__('Front-end/banks.bank.description')}}</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">تعديل</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                    <button type="submit" class="btn btn-primary">{{__('Front-end/banks.edit')}}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Front-end/banks.cancel')}}</button>
                 </div>
                     </form>
                 </div>
@@ -138,25 +138,25 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">اضافة قسم</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                    <h6 class="modal-title">{{__('Front-end/banks.add.bank')}}</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <h6>اضافة قسم</h6>
+                    <h6>{{__('Front-end/banks.add.bank')}}</h6>
                     <form action="{{ route('sections.store') }}" method="post" autocomplete="off">
                        @csrf
                         <div class="form-group">
-                            <label for="exampleInputEmail1">اسم القسم</label>
+                            <label for="exampleInputEmail1">{{__('Front-end/banks.bank.name')}}</label>
                             <input type="text" class="form-control" id="section_name" name="section_name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">الوصف</label>
+                            <label for="exampleFormControlTextarea1">{{__('Front-end/banks.bank.description')}}</label>
                             <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">اضافة</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">اغلاق</button>
+                            <button type="submit" class="btn btn-success">{{__('Front-end/banks.add')}}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Front-end/banks.cancel')}}</button>
                         </div>
                     </form>
                 </div>
@@ -168,13 +168,13 @@
             <div class="modal-content tx-size-sm">
                 <div class="modal-body tx-center pd-y-20 pd-x-20">
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button> <i class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                    <h4 class="tx-danger mg-b-20">هل انت متأكد من حذف هذا القسم</h4>
-                    <p class="mg-b-20 mg-x-20">في حال حذفك لهذا القسم فبهذا سوف يتم حذف جميع منتجاته</p>
+                    <h4 class="tx-danger mg-b-20">{{__('Front-end/banks.delete.bank.confirm.message')}}</h4>
+                    <p class="mg-b-20 mg-x-20">{{__('Front-end/banks.delete.bank.confirm.warning')}}</p>
                     <form action="sections/destroy'" method="post" autocomplete="off">
                         @csrf
                         @method('delete')
                         <input type="hidden" name="id" id="id" value="">
-                        <button type="submit" class="btn ripple btn-danger pd-x-25">حذف</button>
+                        <button type="submit" class="btn ripple btn-danger pd-x-25">{{__('Front-end/banks.delete')}}</button>
                     </form>
                 </div>
             </div>
