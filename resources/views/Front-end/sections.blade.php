@@ -16,7 +16,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الاعدادات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الأقسام</span>
+                <h4 class="content-title mb-0 my-auto">{{__('Front-end/banks.banks.transactions')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Front-end/banks.banks')}}</span>
             </div>
         </div>
     </div>
@@ -52,12 +52,12 @@
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">قائمة الأقسام</h4>
+                        <h4 class="card-title mg-b-0">{{__('Front-end/banks.banks.list')}}</h4>
                         <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
                     @can('add-section')
                     <p class="tx-12 tx-gray-500 mb-2"><div class="col-sm-6 col-md-4 col-xl-3 mg-t-20 mg-sm-t-0">
-                        <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-slide-in-right" data-toggle="modal" href="#modaldemo8">اضافة قسم</a>
+                        <a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-slide-in-right" data-toggle="modal" href="#modaldemo8">{{__('Front-end/banks.add.bank')}}</a>
                     </div></p>
                     @endcan
                 </div>
@@ -67,9 +67,9 @@
                             <thead>
                             <tr>
                                 <th class="border-bottom-0">#</th>
-                                <th class="border-bottom-0">اسم القسم</th>
-                                <th class="border-bottom-0">الوصف</th>
-                                <th class="border-bottom-0">العمليات</th>
+                                <th class="border-bottom-0">{{__('Front-end/banks.bank.name')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/banks.bank.description')}}</th>
+                                <th class="border-bottom-0">{{__('Front-end/banks.settings')}}</th>
                                 <th class="border-bottom-0">.</th>
                             </tr>
                             </thead>
@@ -84,12 +84,12 @@
                                         <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale"
                                            data-id="{{ $section->id }}" data-section_name="{{ $section->name }}"
                                            data-description="{{ $section->description }}" data-toggle="modal"
-                                           href="#modaldemo1" title="تعديل"><i class="las la-pen"></i></a>
+                                           href="#modaldemo1" title="{{__('Front-end/banks.edit')}}"><i class="las la-pen"></i></a>
                                     @endcan
                                     @can('delete-section')
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $section->id }}" data-section_name="{{ $section->name }}"
-                                           data-toggle="modal" href="#modaldemo5" title="حذف"><i
+                                           data-toggle="modal" href="#modaldemo5" title="{{__('Front-end/banks.delete')}}"><i
                                                 class="las la-trash"></i></a>
                                         @endcan
                                     </td>
