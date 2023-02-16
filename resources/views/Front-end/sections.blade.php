@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    الأقسام
+    {{__('Front-end/banks.banks')}}
 @endsection
 @section('css')
     <!-- Internal Data table css -->
