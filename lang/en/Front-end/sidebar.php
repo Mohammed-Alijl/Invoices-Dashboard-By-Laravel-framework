@@ -16,7 +16,7 @@ return [
     'users' => 'Users',
     'users.list' => 'Users List',
     'users.permissions' => 'Users Permissions',
-    'settings' => 'Settings',
+    'settings' => 'Banks & Transactions',
     'sections.list' => 'Banks List',
     'products.list' => 'Transactions List',
 ];

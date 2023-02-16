@@ -16,7 +16,7 @@ return [
     'users'=>'المستخدمين',
     'users.list'=>'قائمة المستخدمين',
     'users.permissions'=>'صلاحيات المستخدمين',
-    'settings'=>'الاعدادات',
+    'settings'=>'الينوك و المعاملات',
     'sections.list'=>'قائمة البنوك',
     'products.list'=>'قائمة المعاملات',
 ];
