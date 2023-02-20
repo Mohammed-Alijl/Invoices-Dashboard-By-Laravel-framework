@@ -20,7 +20,7 @@ class ProfileController extends Controller
      */
     public function edit(): View
     {
-        return view('editprofile');
+        return view('Front-end.editprofile');
     }
 
     /**
