@@ -31,10 +31,8 @@ Route::group(
         Route::resource('products', \App\Http\Controllers\ProductController::class);
         Route::resource('attachments', \App\Http\Controllers\AttachmentController::class);
         Route::resource('payments', \App\Http\Controllers\PaymentController::class);
+        Route::resource('/profile',ProfileController::class);
         Route::get('/{page}', [\App\Http\Controllers\AdminController::class, 'index']);
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
         Route::get('/section/{id}', [\App\Http\Controllers\SectionController::class, 'products']);
         Route::get('paid/invoices', [\App\Http\Controllers\InvoiceController::class, 'invoicesPaid'])->name('invoices.paid');

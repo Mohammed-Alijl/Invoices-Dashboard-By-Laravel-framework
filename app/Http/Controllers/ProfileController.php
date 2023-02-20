@@ -3,38 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
+use App\Traits\AttachmentTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    use AttachmentTrait;
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit(): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        return view('editprofile');
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request,$id)
     {
-        $request->user()->fill($request->validated());
+        try {
+            //check if the auth user how try to change data or not
+            if($id != Auth::id())
+                return redirect()->back()->withErrors('You Are Not Authorized');
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+            $user = User::find($id);
+
+            if($request->filled('email'))
+                $user->email = $request->email;
+
+            if($request->filled('name'))
+                $user->name = $request->name;
+
+            if ($files = $request->file('pic')) {
+                if($user->image != 'default.jpg')
+                    $this->delete_attachment('assets/img/users/' . $user->image);
+                $imageName = $this->save_attachment($files, "assets/img/users");
+                $user->image = $imageName;
+            }
+
+            if($user->save()){
+                Session::put('success','The user data has been successfully modified');
+                return redirect()->back();
+            }
+
+            return \redirect()->back()->withErrors('There is some error, please try again');
+        }catch (\Exception $exception){
+            return redirect()->back()->withErrors($exception->getMessage());
         }
+//        $request->user()->fill($request->validated());
+//
+//        if ($request->user()->isDirty('email')) {
+//            $request->user()->email_verified_at = null;
+//        }
+//
+//        $request->user()->save();
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+//        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
