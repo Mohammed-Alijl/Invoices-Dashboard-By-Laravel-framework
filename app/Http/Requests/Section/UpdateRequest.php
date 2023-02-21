@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\section;
+namespace App\Http\Requests\Section;
 
 use App\Models\Section;
 use Exception;
@@ -23,19 +23,19 @@ class UpdateRequest extends FormRequest
         try {
             $section = Section::find($this->id);
             if(!$section)
-                return redirect()->back()->withErrors(['failed_msg'=>'هذا القسم غير موجود']);
+                return redirect()->back()->withErrors(__('failed_messages.section.notFound'));
             if ($this->filled('name'))
                 $section->name = $this->name;
             if ($this->filled('description'))
                 $section->description = $this->description;
             if($section->save()){
-                Session::put('success_msg','تم اضافة التعديلات على القسم بنجاح');
+                Session::put('success_msg',__('success_messages.section.edit'));
                 return redirect()->back();
             }
             else
-                return redirect()->back()->withErrors(['failed_msg'=> 'حدث خطأ ما الرجاء المحاولة مرة اخرى']);
+                return redirect()->back()->withErrors(__('failed_messages.failed'));
         }catch (Exception $ex){
-            return redirect()->back()->withErrors(['failed_msg'=>$ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 
@@ -54,12 +54,12 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return[
-            'name.required'=>'اسم القسم مطلوب',
-            'name.unique'=>'هذا القسم موجود بالفعل',
-            'name.min'=>'اسم القسم قصير للغاية',
-            'name.max'=>'يجب ان يكون اسم القسم اقل من 30 حرف',
-            'description.required'=>'حقل الوصف مطلوب',
-            'description.max'=>'الوصف اطول من اللازم'
+            'name.required'=>__('failed_messages.section.name.required'),
+            'name.unique'=>__('failed_messages.section.name.unique'),
+            'name.min'=>__('failed_messages.section.name.min'),
+            'name.max'=>__('failed_messages.section.name.max'),
+            'description.required'=>__('failed_messages.section.description.required'),
+            'description.max'=>__('failed_messages.section.description.max')
         ];
     }
 }

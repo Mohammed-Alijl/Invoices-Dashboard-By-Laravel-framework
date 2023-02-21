@@ -24,13 +24,13 @@ class StoreRequest extends FormRequest
             $section->name = $this->section_name;
             $section->description = $this->description;
             if ($section->save()){
-                session()->put('success_msg','تم اضافة القسم بنجاح');
+                session()->put('success_msg',__('success_messages.section.add'));
                 return redirect()->back();
             }
             else
-                return redirect()->back()->withErrors(['failed_msg'=>'حدث خطأ ما الرجاء المحاولة مرة اخرى']);
+                return redirect()->back()->withErrors(__('failed_messages.failed'));
         }catch (Exception $ex){
-            return redirect()->back()->withErrors(['failed_msg'=>$ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 
@@ -49,12 +49,12 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return[
-            'section_name.required'=>'اسم القسم مطلوب',
-            'section_name.unique'=>'هذا القسم موجود بالفعل',
-            'section_name.min'=>'اسم القسم قصير للغاية',
-            'section_name.max'=>'يجب ان يكون اسم القسم اقل من 30 حرف',
-            'description.required'=>'حقل الوصف مطلوب',
-            'description.max'=>'الوصف اطول من اللازم'
+            'section_name.required'=>__('failed_messages.section.section_name.required'),
+            'section_name.unique'=>__('failed_messages.section.section_name.unique'),
+            'section_name.min'=>__('failed_messages.section.section_name.min'),
+            'section_name.max'=>__('failed_messages.section.section_name.max'),
+            'description.required'=>__('failed_messages.section.description.required'),
+            'description.max'=>__('failed_messages.section.description.max')
         ];
     }
 }

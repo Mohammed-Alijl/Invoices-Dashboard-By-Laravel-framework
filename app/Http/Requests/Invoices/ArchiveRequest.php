@@ -28,19 +28,19 @@ class ArchiveRequest extends FormRequest
         try {
             $invoice = Invoice::find($this->id);
             if(!$invoice)
-                return redirect()->back()->withErrors('invoices_failed_msg','الفاتورة المراد حذفها غير موجودة');
+                return redirect()->back()->withErrors(__('failed_messages.invoice.archive.notFound'));
             if($invoice->delete()){
-                Session::put('invoices_success_msg','تم حذف الفاتورة بنجاح');
+                Session::put('invoices_success_msg',__('success_messages.invoice.archive'));
                 Notification::send(User::where('id','!=',Auth::id())->get(),new InvoiceArchiveNotification($this->id));
                 event(new NewNotification(
                     $this->id,
-                    'تم أرشفة فاتورة بواسطة: ' . auth()->user()->name,
+                    __('success_messages.invoice.archive.notification') . auth()->user()->name,
                 ));
                 return redirect()->back();
             }else
-                return redirect()->back()->withErrors('invoices_failed_msg','حدث خطا اثناء محاولة حذف الفاتورة');
+                return redirect()->back()->withErrors(__('failed_messages.invoices.archive'));
         }catch (Exception $ex){
-            return redirect()->back()->withErrors('invoices_failed_msg',$ex->getMessage());
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 

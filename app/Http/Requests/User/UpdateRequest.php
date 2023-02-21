@@ -31,7 +31,7 @@ class UpdateRequest extends FormRequest
         try {
             $user = User::find($id);
             if(!$user)
-                return redirect()->back()->withErrors('failed','هذا المستخدم غير موجود');
+                return redirect()->back()->withErrors(__('failed_messages.user.notFound'));
             if($this->filled('name'))
                 $user->name = $this->name;
             if($this->filled('email'))
@@ -51,13 +51,13 @@ class UpdateRequest extends FormRequest
             if($user->save()){
                 DB::table('model_has_roles')->where('model_id',$id)->delete();
                 $user->assignRole($this->roles_name);
-                Session::put('success', 'تم تعديل بيانات المستخدم بنجاح');
+                Session::put('success', __('success_messages.user.edit'));
                 return redirect()->route('users.index');
             }
             else
-                return redirect()->withErrors('failed','حدث خطأ ما الرجاء المحاولة مرة اخرى');
+                return redirect()->withErrors(__('failed_messages.failed'));
         }catch (Exception $ex){
-            return redirect()->back()->withErrors('failed',$ex->getMessage());
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 
@@ -79,15 +79,15 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.unique'=>'اسم المستخدم مستخدم بالفعل, الرجاء الاختيار اسم مستخدم أخر',
-            'name.max'=>'اسم المستخدم أطول من اللازم',
-            'email.email'=>'الرجاء ادخال بريد الكتروني صحيح',
-            'email.unique'=>'هذا البريد الالكتروني مستخدم بالفعل',
-            'password.same'=>'كلمة السر وتأكيدها غير متطابقان الرجاء المحاولة مرة اخرى',
-            'roles_name.array'=>'حدث خطأ ما الرجاء المحاولة مرة اخرى',
-            'roles_name.exists'=>'حدث خطأ ما الرجاء المحاولة مرة أخرى',
-            'pic.mimes'=>'يجب اختيار صورة منا امتداد: jpeg, jpg, png, svg',
-            'pic.max'=>'حجم الصورة كبير حدا الرجاء اختيار صورة شخصية بحجم أقل',
+            'name.unique'=>__('failed_messages.user.name.unique'),
+            'name.max'=>__('failed_messages.user.name.max'),
+            'email.email'=>__('failed_messages.user.email.email'),
+            'email.unique'=>__('failed_messages.user.email.unique'),
+            'password.same'=>__('failed_messages.user.password.same'),
+            'roles_name.array'=>__('failed_messages.user.roles_name.array'),
+            'roles_name.exists'=>__('failed_messages.user.roles_name.exists'),
+            'pic.mimes'=>__('failed_messages.user.pic.mimes'),
+            'pic.max'=>__('failed_messages.user.pic.max'),
         ];
     }
 }

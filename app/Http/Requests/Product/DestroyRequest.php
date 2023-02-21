@@ -23,13 +23,13 @@ class DestroyRequest extends FormRequest
         try {
             $product = Product::find($this->id);
             if(!$product)
-                return redirect()->back()->withErrors('هذا المنتج غير موجود');
+                return redirect()->back()->withErrors(__('failed_messages.product.notFound'));
             if($product->delete()){
-                Session::put('products_success_msg','تم حذف المنتج بنجاح');
+                Session::put('products_success_msg',__('success_messages.product.destroy'));
                 return redirect()->back();
             }
         }catch (Exception $ex){
-            return redirect()->back()->withErrors(['products_failed_msg'=> $ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
 
     }

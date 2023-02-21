@@ -25,16 +25,16 @@ class DestroyRequest extends FormRequest
         try {
             $user = User::find($this->id);
             if (!$user)
-                return redirect()->back()->withErrors('failed', 'المستخدم الذي تحاول حذفه غير موجود');
+                return redirect()->back()->withErrors(__('failed_messages.user.destroy.notFound'));
             if ($user->image != 'default.jpg')
                 $this->delete_attachment('assets/img/users/' . $user->image);
             if ($user->delete()) {
-                return redirect()->back()->withErrors(['failed' => 'تم حذف المستخدم بنجاح']);
+                return redirect()->back()->withErrors(__('success_messages.user.destroy'));
             }
             else
-                return redirect()->back()->withErrors(['failed' => 'حدث خطأ ما الرجاء المحاولة مرة أخرى']);
+                return redirect()->back()->withErrors(__('failed_messages.failed'));
         } catch (\Exception $ex) {
-            return redirect()->back()->withErrors('failed', $ex->getMessage());
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 

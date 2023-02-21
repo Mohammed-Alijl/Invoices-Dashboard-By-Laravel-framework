@@ -23,13 +23,13 @@ class DestroyRequest extends FormRequest
         try {
             $section = Section::find($this->id);
             if(!$section)
-                return redirect()->back()->withErrors(['failed_msg'=>'هذا القسم غير موجود']);
+                return redirect()->back()->withErrors(__('failed_messages.section.notFound'));
             if($section->delete()){
-                Session::put('success_msg','تم حذف القسم بنجاح');
+                Session::put('success_msg',__('success_messages.section.destroy'));
                 return redirect()->back();
             }
         }catch (Exception $ex){
-            return redirect()->back()->withErrors(['failed_msg'=>$ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
 
     }

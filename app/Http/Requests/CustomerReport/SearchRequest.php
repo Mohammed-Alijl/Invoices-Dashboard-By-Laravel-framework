@@ -32,7 +32,7 @@ class SearchRequest extends FormRequest
             $end_at = $this->end_at;
             return view('Front-end.reports.customer',compact('invoices','sections','start_at','end_at'));
         }catch (\Exception $ex){
-            return redirect()->back()->withErrors(['failed',$ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 
@@ -53,20 +53,20 @@ class SearchRequest extends FormRequest
     public function messages()
     {
         return [
-            'section_id.required'=>'الرجاء اختيار قسم من الاختيارات',
-            'section_id.exists'=>'الرجاء اختيار قسم من الاختيارات',
-            'section_id.numeric'=>'الرجاء اختيار قسم من الاختيارات',
-            'section_id.min'=>'الرجاء اختيار قسم من الاختيارات',
+            'section_id.required'=>__('failed_messages.reports.section_id.required'),
+            'section_id.exists'=>__('failed_messages.reports.section_id.exists'),
+            'section_id.numeric'=>__('failed_messages.reports.section_id.numeric'),
+            'section_id.min'=>__('failed_messages.reports.section_id.min'),
 
-            'product_id.required'=>'الرجاء اختيار منتج من الاختيارات',
-            'product_id.exists'=>'الرجاء اختيار منتج من الاختيارات',
-            'product_id.numeric'=>'الرجاء اختيار منتج من الاختيارات',
-            'product_id.min'=>'الرجاء اختيار منتج من الاختيارات',
+            'product_id.required'=>__('failed_messages.reports.product_id.required'),
+            'product_id.exists'=>__('failed_messages.reports.product_id.exists'),
+            'product_id.numeric'=>__('failed_messages.reports.product_id.numeric'),
+            'product_id.min'=>__('failed_messages.reports.product_id.min'),
 
-            'start_at.date_format'=>'الرجاء الالتزام بتنسيق التاريخ اليوم-الشهر-السنة',
-            'start_at.before'=>'لا يمكن ان يكون تاريخ النهاية قبل تاريخ البداية',
+            'start_at.date_format'=>__('failed_messages.reports.start_at.date_format'),
+            'start_at.before'=>__('failed_messages.reports.start_at.before'),
 
-            'end_at.date_format'=>'الرجاء الالتزام بتنسيق التاريخ اليوم-الشهر-السنة',
+            'end_at.date_format'=>__('failed_messages.reports.end_at.date_format'),
         ];
     }
 }

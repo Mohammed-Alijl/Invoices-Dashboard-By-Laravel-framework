@@ -46,7 +46,7 @@ class InvoiceDestroyNotification extends Notification
             'invoice_id'=>$this->invoice_id,
             'user_name'=>$userName,
             'image'=>Auth::user()->image,
-            'title'=> 'تم حذف فاتورة نهائيا بواسطة: ' . $userName ,
+            'title'=> __('success_messages.invoices.destroy.notification') . $userName ,
             'page'=>'invoice_destroy'
             ];
     }

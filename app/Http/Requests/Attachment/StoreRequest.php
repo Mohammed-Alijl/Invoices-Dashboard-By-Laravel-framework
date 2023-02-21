@@ -30,13 +30,13 @@ class StoreRequest extends FormRequest
             $attachment->invoice_id = $this->invoice_id;
             $attachment->file_name = $attachmentName;
             if($attachment->save()){
-                Session::put('invoices_details.success.msg','تم اضافة المرفق بنجاح');
+                Session::put('invoices_details.success.msg',__('success_messages.attachment.add'));
                 return redirect()->back();
             }
             else
-                return redirect()->back()->withErrors('attachment.failed','فشل اضافة المرفق الرجاء المحاولة مرة اخرى');
+                return redirect()->back()->withErrors('attachment.failed',__('failed_messages.attachment.add'));
         }catch (Exception $ex){
-            return redirect()->back()->withErrors('attachment.failed',$ex->getMessage());
+            return redirect()->back()->withErrors($ex->getMessage());
         }
 
 
@@ -59,14 +59,14 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'invoice_id.required'=>'معرف الفاتورة مطلوب',
-            'invoice_id.integer'=>'يجب ان يكون رقم الفاتورة رقما صحيحا',
-            'invoice_id.exists'=>'الفاتورة المراد اضافة مرفق لها غير صحيحة',
-            'invoice_number.required'=>'الرجاء ادخال رقم الفاتورة',
-            'invoice_number.numeric'=>'يجب ان يكون رقم الفاتورة أرقام فقط',
-            'invoice_number.exists'=>'يجب أن يكون رقم الفاتورة صحيحا',
-            'pic.mimes'=>'يجب ان تكون صيغة المرفق pdf, jpeg ,.jpg , png',
-            'pic.max'=>'حجم المرفق كبير للغاية',
+            'invoice_id.required'=>__('failed_messages.attachment.invoice_id.required'),
+            'invoice_id.integer'=>__('failed_messages.attachment.invoice_id.integer'),
+            'invoice_id.exists'=>__('failed_messages.attachment.invoice_id.exists'),
+            'invoice_number.required'=>__('failed_messages.attachment.invoice_number.required'),
+            'invoice_number.numeric'=>__('failed_messages.attachment.invoice_number.numeric'),
+            'invoice_number.exists'=>__('failed_messages.attachment.invoice_number.exists'),
+            'pic.mimes'=>__('failed_messages.attachment.pic.mimes'),
+            'pic.max'=>__('failed_messages.attachment.pic.max'),
         ];
     }
 }

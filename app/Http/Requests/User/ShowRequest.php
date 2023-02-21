@@ -24,10 +24,10 @@ class ShowRequest extends FormRequest
             $roles = Role::pluck('name','name')->all();
             $userRole = $user->roles->pluck('name','name')->all();
             if(!$user)
-                return redirect()->back()->withErrors('failed','عذرا هذا المستخدم غير موجود');
+                return redirect()->back()->withErrors(__('failed_messages.user.notFound'));
             return view('Front-end.users.show',compact('user','roles','userRole'));
         }catch (\Exception $ex){
-            return redirect()->back()->withErrors('failed',$ex->getMessage());
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 

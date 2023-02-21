@@ -52,9 +52,9 @@ class StoreRequest extends FormRequest
             $invoice->user_id = Auth::id();
             $invoice->remaining_amount = intval($total);
             if(!$invoice->save())
-                return redirect()->route('invoices.index')->withErrors('invoices_failed_msg','حدث خطا ما اثناء الاضافة الرجاء المحاولة مرة اخرى');
+                return redirect()->route('invoices.index')->withErrors(__('failed_messages.invoices.add'));
             else
-                Session::put('invoices_success_msg','تم اضافة الفاتورة بنجاح');
+                Session::put('invoices_success_msg',__('success_messages.invoices.add'));
             if ($files = $this->file('pic')) {
                     $attachmentName = $this->save_attachment($files, "assets/img/invoices/$invoice->invoice_number");
                     $attachment = new Attachment();
@@ -73,11 +73,11 @@ class StoreRequest extends FormRequest
             Notification::send(User::where('id','!=',Auth::id())->get(),new InvoiceCreated($invoice->id));
             event(new \App\Events\NewNotification(
                 $invoice->id,
-                'تم اضافة فاتورة جديدة بواسطة: ' . Auth::user()->name,
+                __('success_messages.invoices.add.notification') . Auth::user()->name,
             ));
                 return redirect()->route('invoices.index');
         }catch (Exception $ex){
-            return redirect()->route('invoices.index')->withErrors('invoices_failed_msg',$ex->getMessage());
+            return redirect()->route('invoices.index')->withErrors($ex->getMessage());
         }
     }
 
@@ -106,54 +106,54 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-          'invoice_number.required'=>'الرجاء ادخال رقم الفاتورة',
-          'invoice_number.unique'=>'رقم الفاتورة هذا مستخدم بالفعل الرجاء اختيار رقم اخر',
-          'invoice_number.min'=>'رقم الفاتورة يجب ان يكون رقم موجب',
-          'invoice_number.max'=>'رقم الفاتورة اكبر من المسموح به',
-          'invoice_number.numeric'=>'يجب ان يكون رقم الفاتورة أرقام فقط',
+          'invoice_number.required'=>__('failed_messages.invoices.invoice_number.required'),
+          'invoice_number.unique'=>__('failed_messages.invoices.invoice_number.unique'),
+          'invoice_number.min'=>__('failed_messages.invoices.invoice_number.min'),
+          'invoice_number.max'=>__('failed_messages.invoices.invoice_number.max'),
+          'invoice_number.numeric'=>__('failed_messages.invoices.invoice_number.numeric'),
 
-          'invoice_date.required'=>'الرجاء ادخال تاريخ الفاتورة',
-          'invoice_date.date'=>'الرجاء ادخال تاريخ صحيح',
-          'invoice_date.date_format'=>'يجب ان يكون تنسيق التاريخ Y-m-d',
+          'invoice_date.required'=>__('failed_messages.invoices.invoice_date.required'),
+          'invoice_date.date'=>__('failed_messages.invoices.invoice_date.date'),
+          'invoice_date.date_format'=>__('failed_messages.invoices.invoice_date.date_format'),
 
-          'due_date.required'=>'الرجاء ادخال تاريخ الاستحقاق',
-          'due_date.date'=>'الرجاء ادخال تاريخ صحيح',
-          'due_date.date_format'=>'يجب ان يكون تنسيق التاريخ Y-m-d',
-          'due_date.after_or_equal'=>'يجب ان يكون تاريخ الاستحقاق اكبر من تاريخ الفاتورة او مساوي له',
+          'due_date.required'=>__('failed_messages.invoices.due_date.required'),
+          'due_date.date'=>__('failed_messages.invoices.due_date.date'),
+          'due_date.date_format'=>__('failed_messages.invoices.due_date.date_format'),
+          'due_date.after_or_equal'=>__('failed_messages.invoices.due_date.after_or_equal'),
 
-          'section_id.required'=>'الرجاء اختيار قسم من الاختيارات',
-          'section_id.exists'=>'الرجاء اختيار قسم من الاختيارات',
-          'section_id.numeric'=>'الرجاء اختيار قسم من الاختيارات',
-          'section_id.min'=>'الرجاء اختيار قسم من الاختيارات',
+          'section_id.required'=>__('failed_messages.invoices.section_id.required'),
+          'section_id.exists'=>__('failed_messages.invoices.section_id.exists'),
+          'section_id.numeric'=>__('failed_messages.invoices.section_id.numeric'),
+          'section_id.min'=>__('failed_messages.invoices.section_id.min'),
 
-          'product_id.required'=>'الرجاء اختيار منتج من الاختيارات',
-          'product_id.exists'=>'الرجاء اختيار منتج من الاختيارات',
-          'product_id.numeric'=>'الرجاء اختيار منتج من الاختيارات',
-          'product_id.min'=>'الرجاء اختيار منتج من الاختيارات',
+          'product_id.required'=>__('failed_messages.invoices.product_id.required'),
+          'product_id.exists'=>__('failed_messages.invoices.product_id.exists'),
+          'product_id.numeric'=>__('failed_messages.invoices.product_id.numeric'),
+          'product_id.min'=>__('failed_messages.invoices.product_id.min'),
 
-          'discount.required'=>'الرجاء ادخال الخصم وفي حال عدم وجود خصم ادخال صفر',
-          'discount.numeric'=>'الرجاء ادخال ارقام فقط',
-          'discount.lte'=>' يجب ان يكون مبلغ الخصم اقل من مبلغ العمولة',
-          'discount.min'=>'لا يمكن ان يكون مبلغ العمولة بسالب',
+          'discount.required'=>__('failed_messages.invoices.discount.required'),
+          'discount.numeric'=>__('failed_messages.invoices.discount.numeric'),
+          'discount.lte'=>__('failed_messages.invoices.discount.lte'),
+          'discount.min'=>__('failed_messages.invoices.discount.min'),
 
-          'amount_commission.required'=>'الرجاء ادخال مبلغ العمولة',
-          'amount_commission.numeric'=>'يجب ان يكون مبلغ العمولة ارقام فقط',
-          'amount_commission.lte'=>'يجب ان يكون مبلغ العمولة اقل من مبلغ التحصيل',
-          'amount_commission.min'=>'مبلغ العمولة اقل من المسموح به',
+          'amount_commission.required'=>__('failed_messages.invoices.amount_commission.required'),
+          'amount_commission.numeric'=>__('failed_messages.invoices.amount_commission.numeric'),
+          'amount_commission.lte'=>__('failed_messages.invoices.amount_commission.lte'),
+          'amount_commission.min'=>__('failed_messages.invoices.amount_commission.min'),
 
-          'amount_collection.required'=>'مبلغ التحصيل مطلوب',
-          'amount_collection.numeric'=>'مبلغ التحصيل يجب ان يكون ارقام فقط',
-          'amount_collection.max'=>'مبلغ التحصيل اكبر من المسموح به',
-          'amount_collection.min'=>'مبلغ التحصيل اقل من المسموح به',
+          'amount_collection.required'=>__('failed_messages.invoices.amount_collection.required'),
+          'amount_collection.numeric'=>__('failed_messages.invoices.amount_collection.numeric'),
+          'amount_collection.max'=>__('failed_messages.invoices.amount_collection.max'),
+          'amount_collection.min'=>__('failed_messages.invoices.amount_collection.min'),
 
-          'note.string'=>'يجب ان تكون الملاحظات عبارة عن نصوص',
-          'note.max'=>'الملاحظات اكبر من اللازم',
+          'note.string'=>__('failed_messages.invoices.note.string'),
+          'note.max'=>__('failed_messages.invoices.note.max'),
 
-          'rate_vat.required'=>'يجب ان تكون نسبة ضريبة القيمة المضافة 5% او 10%',
-          'rate_vat.in'=>'يجب ان تكون نسبة ضريبة القيمة المضافة 5% او 10%',
+          'rate_vat.required'=>__('failed_messages.invoices.rate_vat.required'),
+          'rate_vat.in'=>__('failed_messages.invoices.rate_vat.in'),
 
-          'pic.mimes'=>'يجب ان تكون صيغة المرفق pdf, jpeg ,.jpg , png',
-          'pic.max'=>'حجم المرفق كبير للغاية',
+          'pic.mimes'=>__('failed_messages.invoices.pic.mimes'),
+          'pic.max'=>__('failed_messages.invoices.pic.max'),
         ];
     }
 }

@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
         try {
             $product = Product::find($this->id);
             if(!$product)
-                return redirect()->back()->withErrors(['product_failed_msg'=>'هذا المنتج غير موجود']);
+                return redirect()->back()->withErrors(__('failed_messages.product.notFound'));
             if ($this->filled('section_name')){
                 $section_id = Section::where('name',$this->section_name)->first()->id;
                 $product->section_id = $section_id;
@@ -34,12 +34,12 @@ class UpdateRequest extends FormRequest
             if ($this->filled('description'))
                 $product->description = $this->description;
             if($product->save()){
-                Session::put('products_success_msg','تم اضافة التعديلات بنجاح');
+                Session::put('products_success_msg',__('success_messages.product.edit'));
                 return redirect()->back();
             }
 
         }catch (Exception $ex){
-            return redirect()->back()->withErrors(['products_failed_msg'=>$ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 
@@ -59,10 +59,10 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-          'section_name.exists'=>'هذا القسم غير موجود',
-          'name.max'=>'يجب ان يكون الاسم اقل من 30 حرفا',
-          'name.unique'=>'هذا المنتج موجود بالفعل',
-          'description.max'=>'الوصف كبير جدا',
+          'section_name.exists'=>__('failed_messages.product.section_name.exists'),
+          'name.max'=>__('failed_messages.product.name.max'),
+          'name.unique'=>__('failed_messages.product.name.unique'),
+          'description.max'=>__('failed_messages.product.description.max'),
             ];
     }
 }

@@ -46,7 +46,7 @@ class InvoiceArchiveNotification extends Notification
             'invoice_id'=>$this->invoice_id,
             'user_name'=>$userName,
             'image'=>Auth::user()->image,
-            'title'=> 'تم أرشفة فاتورة بواسطة: ' . $userName ,
+            'title'=> __('success_messages.invoices.archive.notification') . $userName ,
             'page'=>'invoice_archive'
         ];
     }

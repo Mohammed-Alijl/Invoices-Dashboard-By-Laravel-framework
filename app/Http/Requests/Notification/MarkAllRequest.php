@@ -24,7 +24,7 @@ class MarkAllRequest extends FormRequest
                 Auth::user()->unreadNotifications->markAsRead();
             return redirect()->back();
         } catch (\Exception $ex) {
-            return redirect()->back()->withErrors(['failed', $ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 

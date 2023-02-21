@@ -32,20 +32,20 @@ class DestroyRequest extends FormRequest
         try {
             $invoice = Invoice::onlyTrashed()->find($this->id);
             if(!$invoice)
-                return redirect()->back()->withErrors(['invoices_failed_msg'=>'الفاتورة المراد حذفها غير موجودة']);
+                return redirect()->back()->withErrors(__('failed_messages.invoices.destroy.notFound'));
             $this->deleteDirectory('assets/img/invoices/' . $invoice->invoice_number);
             if($invoice->forceDelete()){
-                Session::put('invoices_success_msg','تم حذف الفاتورة بنجاح');
+                Session::put('invoices_success_msg',__('success_messages.invoices.destroy'));
                 Notification::send(User::where('id','!=',Auth::id())->get(),new InvoiceDestroyNotification($this->id));
                 event(new NewNotification(
                     $this->id,
-                    'تم حذف فاتورة نهائيا بواسطة: ' . auth()->user()->name ,
+                    __('success_messages.invoices.destroy.notification') . auth()->user()->name ,
                 ));
                 return redirect()->back();
             }else
-                return redirect()->back()->withErrors(['invoices_failed_msg'=>'حدث خطا اثناء محاولة حذف الفاتورة, الرجاء المحاولة مرة اخرى']);
+                return redirect()->back()->withErrors(__('failed_messages.invoices.destroy'));
         }catch (Exception $ex){
-            return redirect()->back()->withErrors('invoices_failed_msg',$ex->getMessage());
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 

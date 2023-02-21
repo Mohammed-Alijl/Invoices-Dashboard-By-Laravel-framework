@@ -23,10 +23,10 @@ class RecoveryRequest extends FormRequest
         if(!$invoice)
             abort(404);
         if($invoice->restore()){
-            Session::put('invoices_success_msg','تم استعادة الفاتورة بنجاح');
+            Session::put('invoices_success_msg',__('success_messages.invoices.recovery'));
             return redirect()->back();
         }else
-            return redirect()->back()->withErrors('invoices_failed_msg','حدث خطأما الرجاء المحاولة مرة أخرى');
+            return redirect()->back()->withErrors(__('failed_messages.failed'));
     }
 
     /**

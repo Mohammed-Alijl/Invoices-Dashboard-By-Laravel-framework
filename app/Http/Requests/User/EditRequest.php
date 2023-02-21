@@ -23,13 +23,13 @@ class EditRequest extends FormRequest
         try {
             $user = User::find($id);
             if(!$user)
-                return redirect()->back()->withErrors('failed','هذا المستخدم غير موجود');
+                return redirect()->back()->withErrors(__('failed_messages.user.notFound'));
             $roles = Role::pluck('name','name')->all();
             $userRole = $user->roles->pluck('name','name')->all();
 
             return view('Front-end.users.edit',compact('user','roles','userRole'));
         }catch (Exception $ex){
-            return redirect()->back()->withErrors('failed',$ex->getMessage());
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 

@@ -40,7 +40,7 @@ class SearchRequest extends FormRequest
             return view('Front-end.reports.invoices', compact('invoices', 'start_at', 'end_at', 'status'));
 
         } catch (\Exception $ex) {
-            return redirect()->back()->withErrors(['failed' => $ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 
@@ -62,14 +62,14 @@ class SearchRequest extends FormRequest
     public function messages()
     {
         return [
-            'radio.required'=>'الرجاء اختيار طريقة البحث',
-            'radio.in'=>'الرجاء اختيار طريقة البحث',
-            'status.required_if'=>'الرجاء تحديد نوع الفواتير',
-            'status.in'=>'الرجاء تحديد نوع الفواتير',
-            'start_at.date_format'=>'الرجاء الالتزام بتنسيق التاريخ اليوم-الشهر-السنة',
-            'start_at.before'=>'لا يمكن ان يكون تاريخ النهاية قبل تاريخ البداية',
-            'end_at.date_format'=>'الرجاء الالتزام بتنسيق التاريخ اليوم-الشهر-السنة',
-            'invoice_number.required_if'=>'الرجاء ادخال رقم الفاتورة',
+            'radio.required'=>__('failed_messages.reports.radio.required'),
+            'radio.in'=>__('failed_messages.reports.radio.in'),
+            'status.required_if'=>__('failed_messages.reports.status.required_if'),
+            'status.in'=>__('failed_messages.reports.status.in'),
+            'start_at.date_format'=>__('failed_messages.reports.start_at.date_format'),
+            'start_at.before'=>__('failed_messages.reports.start_at.before'),
+            'end_at.date_format'=>__('failed_messages.reports.end_at.date_format'),
+            'invoice_number.required_if'=>__('failed_messages.reports.invoice_number.required_if'),
         ];
     }
 }

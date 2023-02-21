@@ -62,7 +62,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-            ->with('success','تم اضافة الصلاحية بنجاح');
+            ->with('success',__('success_messages.role.add'));
     }
     /**
      * Display the specified resource.
@@ -118,7 +118,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-            ->with('success','تم تعديل الصلاحية بنجاح');
+            ->with('success',__('success_messages.role.edit'));
     }
     /**
      * Remove the specified resource from storage.
@@ -130,6 +130,6 @@ class RoleController extends Controller
     {
         DB::table("roles")->where('id',$request->id)->delete();
         return redirect()->route('roles.index')
-            ->withErrors('failed','تم حذف الصلاحية بنجاح');
+            ->withErrors(__('success_messages.role.destroy'));
     }
 }

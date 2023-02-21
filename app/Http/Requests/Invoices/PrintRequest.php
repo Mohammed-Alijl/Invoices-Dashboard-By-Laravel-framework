@@ -22,10 +22,10 @@ class PrintRequest extends FormRequest
         try {
             $invoice = Invoice::find($id);
             if(!$invoice)
-                return redirect()->back()->withErrors(['invoices_success_msg'=>'الفاتورة المراد طباعتها غير موجودة']);
+                return redirect()->back()->withErrors([__('failed_messages.invoices.print.notFound')]);
             return view('Front-end.invoices.print_invoices',compact('invoice'));
         }catch (Exception $ex){
-            return redirect()->back()->withErrors(['invoices_failed_msg'=>$ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 

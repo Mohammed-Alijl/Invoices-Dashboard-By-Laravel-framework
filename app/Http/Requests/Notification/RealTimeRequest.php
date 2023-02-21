@@ -22,7 +22,7 @@ class RealTimeRequest extends FormRequest
             $notification_id = Auth::user()->notifications()->where('data->invoice_id', $id)->pluck('id')->first();
             return redirect()->route('notification.display',$notification_id);
         }catch (\Exception $ex){
-            return redirect()->back()->withErrors(['failed',$ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 

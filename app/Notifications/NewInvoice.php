@@ -41,14 +41,14 @@ class NewInvoice extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('تم اضافة فاتورة جديدة')
-            ->greeting('مرحبا ' . $notifiable->name . ',')
-            ->line('لقد قمت باضافة فاتورة جديدة بنجاح')
-            ->line('رقم الفاتورة: #' . $this->invoice->invoice_number)
-            ->line('اجمالي الفاتورة: ' . $this->invoice->total)
-            ->action('عرض الفاتورة',url('/invoices/'.$this->invoice->id))
-            ->line('شكرا لاستخدامك نظام محمد العجل')
-            ->salutation('أطيب التحيات,');
+            ->subject(__('success_messages.invoice.add.message.subject'))
+            ->greeting(__('success_messages.invoice.add.message.greeting') . $notifiable->name . ',')
+            ->line(__('success_messages.invoice.add.message.line'))
+            ->line(__('success_messages.invoice.add.message.line.invoice_number') . $this->invoice->invoice_number)
+            ->line(__('success_messages.invoice.add.message.line.collection_amount') . $this->invoice->total)
+            ->action(__('success_messages.invoice.add.message.line.display'),url('/invoices/'.$this->invoice->id))
+            ->line(__('success_messages.invoice.add.message.line.thinks'))
+            ->salutation(__('success_messages.invoice.add.message.line.salutation'));
     }
 
     /**

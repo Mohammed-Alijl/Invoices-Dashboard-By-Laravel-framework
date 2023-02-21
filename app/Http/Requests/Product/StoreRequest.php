@@ -26,13 +26,13 @@ class StoreRequest extends FormRequest
            $product->description = $this->description;
            $product->section_id = $this->section_id;
            if($product->save()){
-               Session::put('products_success_msg','تم اضافة المنتج بنجاح');
+               Session::put('products_success_msg',__('success_messages.product.add'));
                return redirect()->back();
            }
            else
-               return redirect()->back()->withErrors(['products_failed_msg','حدث خطا ما اثناء الاضافة الرجاء المحاولة مرة اخرى']);
+               return redirect()->back()->withErrors(__('failed_messages.failed'));
         }catch (Exception $ex){
-            return redirect()->back()->withErrors(['products_failed_msg'=>$ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 
@@ -53,13 +53,13 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-          'name.required'=>'اسم المنتج مطلوب',
-          'name.max'=>'يجب ان يكون اسم المنتج اقل من 30 حرفا',
-          'name.unique'=>'هذا المنتج موجود بالفعل',
-          'description.required'=>'الوصف مطلوب',
-          'description.min'=>'يجب ان يكون وصف المنتج 10 حروف على الاقل',
-          'description.max'=>'وصف المنتج اكبر من اللازم',
-          'section_id'=>'هذا القسم غير موجود',
+          'name.required'=>__('failed_messages.product.name.required'),
+          'name.max'=>__('failed_messages.product.name.max'),
+          'name.unique'=>__('failed_messages.product.name.unique'),
+          'description.required'=>__('failed_messages.product.description.required'),
+          'description.min'=>__('failed_messages.product.description.min'),
+          'description.max'=>__('failed_messages.product.description.max'),
+          'section_id.exists'=>__('failed_messages.product.section_id.exists'),
         ];
     }
 }

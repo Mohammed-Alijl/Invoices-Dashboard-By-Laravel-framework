@@ -22,7 +22,7 @@ class IndexRequest extends FormRequest
             $sections = Section::all();
             return view('Front-end.reports.customer',compact('sections'));
         }catch (\Exception $ex){
-            return redirect()->back()->withErrors(['failed',$ex->getMessage()]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 

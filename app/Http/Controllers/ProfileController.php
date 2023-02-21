@@ -31,7 +31,7 @@ class ProfileController extends Controller
         try {
             //check if the auth user how try to change data or not
             if($id != Auth::id())
-                return redirect()->back()->withErrors('You Are Not Authorized');
+                return abort(403);
 
             $user = User::find($id);
 
@@ -49,23 +49,14 @@ class ProfileController extends Controller
             }
 
             if($user->save()){
-                Session::put('success','The user data has been successfully modified');
+                Session::put('success',__('success_messages.profile.edit'));
                 return redirect()->back();
             }
 
-            return \redirect()->back()->withErrors('There is some error, please try again');
+            return \redirect()->back()->withErrors(__('failed_messages.failed'));
         }catch (\Exception $exception){
             return redirect()->back()->withErrors($exception->getMessage());
         }
-//        $request->user()->fill($request->validated());
-//
-//        if ($request->user()->isDirty('email')) {
-//            $request->user()->email_verified_at = null;
-//        }
-//
-//        $request->user()->save();
-
-//        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**

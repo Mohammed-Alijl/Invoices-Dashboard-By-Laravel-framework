@@ -20,7 +20,7 @@ class IndexRequest extends FormRequest
         try {
             return view('Front-end.reports.invoices');
         }catch (\Exception $ex){
-            return redirect()->withErrors('failed',$ex->getMessage());
+            return redirect()->withErrors($ex->getMessage());
         }
     }
 

@@ -24,9 +24,9 @@ class UpdateRequest extends FormRequest
         try {
             $invoice = Invoice::find($id);
             if(!$invoice)
-                return redirect()->back()->withErrors('invoices_failed_msg','الفاتورة المراد تعديل حالة الدفع لها غير موجودة');
+                return redirect()->back()->withErrors('invoices_failed_msg',__('failed_messages.payments.change.notFound'));
             if($invoice->remaining_amount < $this->collection_amount)
-                return redirect()->back()->withErrors('invoices_failed_msg','لا يجب ان يكون المبلغ المدفوع أكبر من المبلغ المستحق');
+                return redirect()->back()->withErrors(__('failed_messages.payments.collection.less.rest'));
             $remaining_amount = $invoice->remaining_amount - $this->collection_amount;
             $payment = new Invoice_payment();
             $payment->invoice_id = $id;
@@ -46,11 +46,11 @@ class UpdateRequest extends FormRequest
             $payment->save();
             $invoice->remaining_amount = $remaining_amount;
             $invoice->save();
-            Session::put('invoices_success_msg','تم تغير حالة الفاتورة بنجاح');
+            Session::put('invoices_success_msg',__('success_messages.payments.change'));
             return redirect()->route('invoices.index');
 
         }catch (Exception $ex){
-            return redirect()->back()->withErrors('invoices_failed_msg',$ex->getMessage());
+            return redirect()->back()->withErrors($ex->getMessage());
         }
     }
 
@@ -70,10 +70,10 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-          'collection_amount.required'=>'المبلغ المدفوع مطلوب',
-          'collection_amount.numeric'=>'المبلغ المدفوع يجب ان يكون ارقام فقط',
-          'collection_amount.min'=>'الرجاء ادخال 1 على الاقل',
-          'note.max'=>'الملاحظة أكبر من اللازم',
+          'collection_amount.required'=>__('failed_messages.payments.collection_amount.required'),
+          'collection_amount.numeric'=>__('failed_messages.payments.collection_amount.numeric'),
+          'collection_amount.min'=>__('failed_messages.payments.collection_amount.min'),
+          'note.max'=>__('failed_messages.payments.note.max'),
         ];
     }
 }

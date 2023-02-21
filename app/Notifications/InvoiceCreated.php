@@ -46,7 +46,7 @@ class InvoiceCreated extends Notification
             'invoice_id'=>$this->invoice_id,
             'user_name'=>$userName,
             'image'=>Auth::user()->image,
-            'title'=> 'تم اضافة فاتورة جديدة بواسطة: ' . $userName ,
+            'title'=> __('success_messages.invoices.add.notification') . $userName ,
             'page'=>'invoice_store'
         ];
     }

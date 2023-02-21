@@ -25,11 +25,11 @@ class DestroyRequest extends FormRequest
         if(!$attachment)
             abort(404);
         if($attachment->delete()){
-            Session::put('invoices_details.success.msg','تم حذف المرفق بنجاح');
+            Session::put('invoices_details.success.msg',__('success_messages.attachment.delete'));
             $this->delete_attachment("assets/img/invoices/" . $attachment->invoice->invoice_number .  '/' . $attachment->file_name);
             return redirect()->back();
         }else
-            return redirect()->back()->withErrors('invoices_details.failed.msg','حدث خطأ أثناء محاولة حذف المرفق الرجاء المحاولة مرة أخرى');
+            return redirect()->back()->withErrors('invoices_details.failed.msg',__('success_messages.attachment.delete'));
     }
 
     /**
