@@ -18,8 +18,10 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(): View
+    public function edit($id): View
     {
+        if($id != Auth::id())
+            return abort(403);
         return view('Front-end.editprofile');
     }
 
