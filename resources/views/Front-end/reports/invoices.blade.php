@@ -70,13 +70,13 @@
 
                         <div class="row">
 
-                            <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="type">
+                            <div class="col-lg-3 mg-t-20 mg-lg-t-0" id="status">
                                 <p class="mg-b-10">{{__('Front-end/reports.select.invoice.type')}}</p><select class="form-control select2" name="status"
                                                                                  required>
                                     <option value="4" {{!isset($status) || $status== 4 ? 'selected' : ''}}>{{__('Front-end/reports.all.invoices')}}</option>
-                                    <option value="3" {{isset($status) && $status == 3 ? 'selected' : ''}}>الفواتير المدفوعة</option>
-                                    <option value="2" {{isset($status) && $status == 2 ? 'selected' : ''}}>الفواتير المدفوعة جزئيا</option>
-                                    <option value="1" {{isset($status) && $status == 1 ? 'selected' : ''}}>الفواتير الغير مدفوعة</option>
+                                    <option value="3" {{isset($status) && $status == 3 ? 'selected' : ''}}>{{__('Front-end/reports.paid.invoices')}}</option>
+                                    <option value="2" {{isset($status) && $status == 2 ? 'selected' : ''}}>{{__('Front-end/reports.partially.paid.invoices')}}</option>
+                                    <option value="1" {{isset($status) && $status == 1 ? 'selected' : ''}}>{{__('Front-end/reports.unpaid.invoices')}}</option>
 
                                 </select>
                             </div><!-- col-4 -->
