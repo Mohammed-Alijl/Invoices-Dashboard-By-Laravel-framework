@@ -20,6 +20,6 @@ return [
     //==============================================================================
     // MESSAGES=====================================================================
     //==============================================================================
-    'delete.bank.confirm.message'=>'Are you sure you want to delete this transactions?',
+    'delete.transactions.confirm.message'=>'Are you sure you want to delete this transactions?',
 
 ];

@@ -184,7 +184,7 @@
             <div class="modal-content tx-size-sm">
                 <div class="modal-body tx-center pd-y-20 pd-x-20">
                     <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button> <i class="icon icon ion-ios-close-circle-outline tx-100 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                    <h4 class="tx-danger mg-b-20">{{__('Front-end/transactions.delete.bank.confirm.message')}}</h4>
+                    <h4 class="tx-danger mg-b-20">{{__('Front-end/transactions.delete.transactions.confirm.message')}}</h4>
                     <form action="products/destroy'" method="post" autocomplete="off">
                         @csrf
                         @method('delete')
