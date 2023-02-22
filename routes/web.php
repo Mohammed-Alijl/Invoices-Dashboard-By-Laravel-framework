@@ -57,7 +57,6 @@ Route::group(
         Route::get('real_time/display/{id}', [\App\Http\Controllers\NotificationController::class, 'displayRealTime'])->name('notification.display.real.time');
     });
 
-//    Route::get('/{page}', [\App\Http\Controllers\AdminController::class, 'index']);
     Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/section/{id}', [\App\Http\Controllers\SectionController::class, 'products']);
     Route::get('reports/customers', [\App\Http\Controllers\CustomerReportController::class, 'index'])->name('reports.customers');
