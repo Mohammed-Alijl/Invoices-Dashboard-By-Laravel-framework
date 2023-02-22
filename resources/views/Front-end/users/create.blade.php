@@ -75,13 +75,13 @@
 
                         <div class="row mg-b-20">
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                                <label>{{__('Front-end/users.password.change')}}: <span class="tx-danger">*</span></label>
+                                <label>{{__('Front-end/users.password')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                        name="password" required="" type="password">
                             </div>
 
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                                <label> {{__('Front-end/users.confirm.new.password')}}: <span class="tx-danger">*</span></label>
+                                <label> {{__('Front-end/users.confirm.password')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                        name="confirm-password" required="" type="password">
                             </div>

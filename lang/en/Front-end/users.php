@@ -28,6 +28,8 @@ return [
     'inactive'=>'inactive',
     'delete.user'=>'Delete User',
     'password.change'=>'Change Password',
+    'password'=>'Password',
+    'confirm.password'=>'Confirm Password',
     'confirm.new.password'=>'Confirm New Password',
     'profile.pic'=>'Profile Picture',
 

@@ -29,6 +29,8 @@ return [
     'delete.user'=>'حذف المستخدم',
     'password.change'=>'تغيير كلمة المرور',
     'confirm.new.password'=>'تأكيد كلمة المرور الجديدة',
+    'password'=>'كلمة المرور',
+    'confirm.password'=>'تأكيد كلمة المرور',
     'profile.pic'=>'الصورة الشخصية',
 
 
