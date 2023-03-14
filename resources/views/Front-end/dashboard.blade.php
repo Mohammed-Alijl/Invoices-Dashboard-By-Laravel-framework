@@ -73,7 +73,7 @@
                                 <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-up text-white"></i>
 											<span
-                                                class="text-white op-7"> {{round(\App\Models\Invoice::where('value_status',3)->count()/\App\Models\Invoice::count() * 100) . '%'}}</span>
+                                                class="text-white op-7"> {{\App\Models\Invoice::count() ? round(\App\Models\Invoice::where('value_status',3)->count()/\App\Models\Invoice::count() * 100) . '%' : 0 . '%'}}</span>
 										</span>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                                 <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-down text-white"></i>
 											<span
-                                                class="text-white op-7">{{round(\App\Models\Invoice::where('value_status',1)->count()/\App\Models\Invoice::count() * 100) . '%'}}</span>
+                                                class="text-white op-7">{{\App\Models\Invoice::count() ? round(\App\Models\Invoice::where('value_status',1)->count()/\App\Models\Invoice::count() * 100) . '%' : 0 . '%'}}</span>
 										</span>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                                 <span class="float-right my-auto mr-auto">
 											<i class="fas fa-arrow-circle-down text-white"></i>
 											<span
-                                                class="text-white op-7">{{round(\App\Models\Invoice::where('value_status',2)->count()/\App\Models\Invoice::count() * 100) . '%'}}</span>
+                                                class="text-white op-7">{{\App\Models\Invoice::count() ? round(\App\Models\Invoice::where('value_status',2)->count()/\App\Models\Invoice::count() * 100) . '%' : 0 . '%'}}</span>
 										</span>
                             </div>
                         </div>

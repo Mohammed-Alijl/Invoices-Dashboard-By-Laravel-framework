@@ -9,12 +9,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $unpaid_invoices = round(Invoice::where('value_status', '1')->count() / Invoice::count() * 100);
-        $partially_paid_invoices = round(Invoice::where('value_status', '2')->count() / Invoice::count() * 100);
-        $paid_invoices = round(Invoice::where('value_status', '3')->count() / Invoice::count() * 100);
-
-        $barChart = $this->barChart($unpaid_invoices, $paid_invoices, $partially_paid_invoices);
-        $pieChart = $this->pieChart($unpaid_invoices, $paid_invoices, $partially_paid_invoices);
+        if(Invoice::count() > 0){
+            $unpaid_invoices = round(Invoice::where('value_status', '1')->count() / Invoice::count() * 100);
+            $partially_paid_invoices = round(Invoice::where('value_status', '2')->count() / Invoice::count() * 100);
+            $paid_invoices = round(Invoice::where('value_status', '3')->count() / Invoice::count() * 100);
+        }
+        $barChart = $this->barChart($unpaid_invoices ?? 0, $paid_invoices ?? 0, $partially_paid_invoices ?? 0);
+        $pieChart = $this->pieChart($unpaid_invoices ?? 0, $paid_invoices ?? 0, $partially_paid_invoices ?? 0);
         $doughnutChart = $this->doughnutChart();
         $lineChart = $this->lineChart();
 
